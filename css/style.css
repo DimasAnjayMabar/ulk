@@ -1,0 +1,345 @@
+/********** Template CSS **********/
+:root {
+    --primary: #ffb3c6;
+    --secondary: #ff8fab;
+    --light: #ffe5ec;
+    --dark: #1b2021;
+    --optional1: #0e0d0d;
+    --optional2: #ffe5ec;
+}
+
+/* Default styling for larger screens */
+#article-video {
+    width: 20%;
+    height: 410px;
+}
+
+#article-image{
+    width: 30%;
+}
+
+/* Styling when the screen width is under 992px */
+@media (max-width: 992px) {
+    #article-video {
+        width: 100%;
+        height: 350px;
+    }
+    #article-image{
+        width: 50%;
+        height: 50%;
+    }
+}
+
+.btn {
+    font-weight: 700;
+    transition: .5s;
+}
+
+.btn:hover {
+    -webkit-box-shadow: 0 8px 6px -6px #555555;
+    -moz-box-shadow: 0 8px 6px -6px #555555;
+    box-shadow: 0 8px 6px -6px #555555;
+}
+
+.btn-primary {
+    color: #FFFFFF;
+}
+
+.btn-square {
+    width: 36px;
+    height: 36px;
+}
+
+.btn-sm-square {
+    width: 28px;
+    height: 28px;
+}
+
+.btn-lg-square {
+    width: 46px;
+    height: 46px;
+}
+
+.btn-square,
+.btn-sm-square,
+.btn-lg-square {
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+}
+
+.back-to-top {
+    position: fixed;
+    display: none;
+    right: 30px;
+    bottom: 0;
+    border-radius: 50% 50% 0 0;
+    z-index: 99;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    font-family: 'Jost', sans-serif;
+    position: relative;
+    margin-left: 30px;
+    padding: 30px 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark);
+    outline: none;
+    transition: .5s;
+}
+
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link.active {
+    color: var(--primary);
+}
+
+@media (min-width: 992px) {
+    .navbar-light .navbar-nav .nav-link::before {
+        position: absolute;
+        content: "";
+        width: 0;
+        height: 5px;
+        bottom: 0;
+        left: 50%;
+        background: var(--primary);
+        transition: .5s;
+    }
+
+    .navbar-light .navbar-nav .nav-link:hover::before,
+    .navbar-light .navbar-nav .nav-link.active::before {
+        width: 100%;
+        left: 0;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .navbar-light .navbar-nav .nav-link  {
+        margin-left: 0;
+        padding: 10px 0;
+    }
+}
+
+.hero-header {
+    background: url(../img/hero.jpg) top right no-repeat;
+    background-size: cover;
+}
+
+.service-item {
+    position: relative;
+    height: 350px;
+    padding: 0 30px;
+    transition: .5s;
+}
+
+.service-item .service-icon {
+    width: 150px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary);
+    border-radius: 50%;
+    transform: rotate(-14deg);
+}
+
+.service-item .service-icon i {
+    transform: rotate(15deg);
+}
+
+.service-item button.btn {
+    position: absolute;
+    width: 60px;
+    bottom: -48px;
+    left: 50%;
+    margin-left: -30px;
+    opacity: 0;
+}
+
+.service-item:hover button.btn {
+    bottom: -24px;
+    opacity: 1;
+}
+
+.price-carousel::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 50%;
+    bottom: 0;
+    left: 0;
+    background: var(--primary);
+    border-radius: 8px 8px 50% 50%;
+    z-index: -1;
+}
+
+.price-carousel .owl-nav {
+    margin-top: 35px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.price-carousel .owl-nav .owl-prev,
+.price-carousel .owl-nav .owl-next{
+    position: relative;
+    margin: 0 5px;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    background: #FFFFFF;
+    font-size: 22px;
+    border-radius: 45px;
+    transition: .5s;
+}
+
+.price-carousel .owl-nav .owl-prev:hover,
+.price-carousel .owl-nav .owl-next:hover {
+    color: var(--dark);
+}
+
+@media (min-width: 576px) {
+    .team-item .row {
+        height: 350px;
+    }
+}
+
+.team-carousel .owl-nav {
+    position: relative; /* Keep it relative to avoid overlap */
+    width: 100%;
+    margin-top: 20px; /* Add space above the arrows */
+    display: flex; /* Flex to align arrows */
+    justify-content: space-between; /* Space arrows on either side */
+    top: auto; /* Ensure it's not centered vertically */
+}
+
+.team-carousel .owl-nav .owl-prev,
+.team-carousel .owl-nav .owl-next {
+    background: var(--primary); /* Use primary color */
+    border-radius: 50%; /* Make them circular */
+    width: 45px; /* Width */
+    height: 45px; /* Height */
+    color: #FFFFFF; /* Text color */
+    display: flex; /* Flex for centering */
+    align-items: center; /* Center icon */
+    justify-content: center; /* Center icon */
+    transition: background 0.5s; /* Transition for hover effect */
+}
+
+
+.team-carousel .owl-nav .owl-prev:hover,
+.team-carousel .owl-nav .owl-next:hover {
+    background: var(--dark); /* Change background on hover */
+}
+
+.testimonial-carousel .owl-dots {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.testimonial-carousel .owl-dot {
+    position: relative;
+    display: inline-block;
+    margin: 0 5px;
+    width: 20px;
+    height: 20px;
+    background: var(--light);
+    border: 2px solid var(--primary);
+    border-radius: 20px;
+    transition: .5s;
+}
+
+.testimonial-carousel .owl-dot.active {
+    width: 40px;
+    height: 40px;
+    background: var(--primary);
+}
+
+.testimonial-carousel .owl-item img {
+    width: 150px;
+    height: 150px;
+}
+
+/* General styling for all views */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 30px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 15px;
+    height: 15px;
+}
+
+/* Specific adjustments for desktop view */
+@media (min-width: 992px) {
+    .carousel-control-prev {
+        left: 25%; /* Adjust to bring closer to the carousel on larger screens */
+    }
+
+    .carousel-control-next {
+        right: 25%; /* Adjust to bring closer to the carousel on larger screens */
+    }
+}
+
+/* Adjustments for mobile view if needed */
+@media (max-width: 991px) {
+    .carousel-control-prev {
+        left: 10px; /* Keep closer on mobile */
+    }
+
+    .carousel-control-next {
+        right: 10px; /* Keep closer on mobile */
+    }
+}
+
+.custom-border {
+    border-color: #ff8fab !important;
+}
+
+.custom-border2{
+    border-color: #522e38 !important;
+}
+
+.custom-button{
+    background-color: #ffb3c6 !important;
+    outline: none;
+    border: none; /* if you want to remove any other border */
+    box-shadow: none; /* if there's a shadow around the button */
+}
+
+.team-item {
+    margin: 0 15px; /* Add horizontal margin to give space between items */
+    padding-bottom: 20px; /* Give some space below the item */
+    transition: transform 0.3s; /* Optional: Smooth transition */
+}
+
+@media (max-width: 991px) {
+    .team-item {
+        margin: 0 5px; /* Less margin on smaller screens */
+    }
+}
+
+@media (max-width: 992px) {
+    .team-carousel .owl-nav {
+        padding: 0 10px; /* Adjust padding for better visibility */
+    }
+
+    .team-item {
+        margin: 0; /* Reset margins for smaller screens */
+    }
+}
+
+
