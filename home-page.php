@@ -38,7 +38,7 @@
                 <div class="col-lg-8 text-center text-lg-start">
                     <h1 class="display-1 text-white mb-md-4" style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 1); color: #ffe5ec !important;">ANDA TIDAK SENDIRI KAMI ADA BERSAMA ANDA</h1>
                     <div class="pt-2" >
-                        <a href="counceling-registration.php" class="btn btn-primary rounded-pill py-md-3 px-md-5 mx-2" style="box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5); background-color: #ffb3c6 !important;">Registrasi Konseling</a>
+                        <a href="counseling-registration.php" class="btn btn-primary rounded-pill py-md-3 px-md-5 mx-2" style="box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5); background-color: #ffb3c6 !important;">Registrasi Konseling</a>
                     </div>
                 </div>
             </div>
