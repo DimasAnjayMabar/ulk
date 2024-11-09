@@ -1,4 +1,4 @@
-/********** Template CSS **********/
+/********** root color pallete **********/
 :root {
     --primary: #ffb3c6;
     --secondary: #ff8fab;
@@ -8,7 +8,7 @@
     --optional2: #ffe5ec;
 }
 
-/* Default styling for larger screens */
+/********** psycho education article stylings **********/
 #article-video {
     width: 20%;
     height: 410px;
@@ -18,7 +18,6 @@
     width: 30%;
 }
 
-/* Styling when the screen width is under 992px */
 @media (max-width: 992px) {
     #article-video {
         width: 100%;
@@ -30,6 +29,7 @@
     }
 }
 
+/********** buttons **********/
 .btn {
     font-weight: 700;
     transition: .5s;
@@ -45,29 +45,14 @@
     color: #FFFFFF;
 }
 
-.btn-square {
-    width: 36px;
-    height: 36px;
+.custom-button{
+    background-color: #ffb3c6 !important;
+    outline: none;
+    border: none; 
+    box-shadow: none; 
 }
 
-.btn-sm-square {
-    width: 28px;
-    height: 28px;
-}
-
-.btn-lg-square {
-    width: 46px;
-    height: 46px;
-}
-
-.btn-square,
-.btn-sm-square,
-.btn-lg-square {
-    padding-left: 0;
-    padding-right: 0;
-    text-align: center;
-}
-
+/********** back to top button **********/
 .back-to-top {
     position: fixed;
     display: none;
@@ -77,6 +62,7 @@
     z-index: 99;
 }
 
+/********** navbars **********/
 .navbar-light .navbar-nav .nav-link {
     font-family: 'Jost', sans-serif;
     position: relative;
@@ -120,11 +106,7 @@
     }
 }
 
-.hero-header {
-    background: url(../img/hero.jpg) top right no-repeat;
-    background-size: cover;
-}
-
+/********** services styling on home page and psycho education article menu **********/
 .service-item {
     position: relative;
     height: 350px;
@@ -175,19 +157,8 @@
     opacity: 1;
 }
 
-.price-carousel::after {
-    position: absolute;
-    content: "";
-    width: 100%;
-    height: 50%;
-    bottom: 0;
-    left: 0;
-    background: var(--primary);
-    border-radius: 8px 8px 50% 50%;
-    z-index: -1;
-}
-
-.price-carousel .owl-nav {
+/********** carousel stylings **********/
+.owl-nav {
     margin-top: 35px;
     width: 100%;
     text-align: center;
@@ -195,8 +166,8 @@
     justify-content: center;
 }
 
-.price-carousel .owl-nav .owl-prev,
-.price-carousel .owl-nav .owl-next{
+.owl-nav .owl-prev,
+.owl-nav .owl-next{
     position: relative;
     margin: 0 5px;
     width: 45px;
@@ -211,8 +182,8 @@
     transition: .5s;
 }
 
-.price-carousel .owl-nav .owl-prev:hover,
-.price-carousel .owl-nav .owl-next:hover {
+.owl-nav .owl-prev:hover,
+.owl-nav .owl-next:hover {
     color: var(--dark);
 }
 
@@ -223,64 +194,38 @@
 }
 
 .team-carousel .owl-nav {
-    position: relative; /* Keep it relative to avoid overlap */
+    position: relative;
     width: 100%;
-    margin-top: 20px; /* Add space above the arrows */
-    display: flex; /* Flex to align arrows */
-    justify-content: space-between; /* Space arrows on either side */
-    top: auto; /* Ensure it's not centered vertically */
+    margin-top: 20px; 
+    display: flex; 
+    justify-content: space-between; 
+    top: auto; 
 }
 
 .team-carousel .owl-nav .owl-prev,
 .team-carousel .owl-nav .owl-next {
-    background: var(--primary); /* Use primary color */
-    border-radius: 50%; /* Make them circular */
-    width: 45px; /* Width */
-    height: 45px; /* Height */
-    color: #FFFFFF; /* Text color */
-    display: flex; /* Flex for centering */
-    align-items: center; /* Center icon */
-    justify-content: center; /* Center icon */
-    transition: background 0.5s; /* Transition for hover effect */
+    background: var(--primary); 
+    border-radius: 50%; 
+    width: 45px;
+    height: 45px; 
+    color: #FFFFFF; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    transition: background 0.5s; 
 }
-
 
 .team-carousel .owl-nav .owl-prev:hover,
 .team-carousel .owl-nav .owl-next:hover {
-    background: var(--dark); /* Change background on hover */
+    background: var(--dark); 
 }
 
-.testimonial-carousel .owl-dots {
-    margin-top: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 15px;
+    height: 15px;
 }
 
-.testimonial-carousel .owl-dot {
-    position: relative;
-    display: inline-block;
-    margin: 0 5px;
-    width: 20px;
-    height: 20px;
-    background: var(--light);
-    border: 2px solid var(--primary);
-    border-radius: 20px;
-    transition: .5s;
-}
-
-.testimonial-carousel .owl-dot.active {
-    width: 40px;
-    height: 40px;
-    background: var(--primary);
-}
-
-.testimonial-carousel .owl-item img {
-    width: 150px;
-    height: 150px;
-}
-
-/* General styling for all views */
 .carousel-control-prev,
 .carousel-control-next {
     width: 30px;
@@ -291,34 +236,49 @@
     transform: translateY(-50%);
 }
 
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    width: 15px;
-    height: 15px;
-}
-
-/* Specific adjustments for desktop view */
 @media (min-width: 992px) {
     .carousel-control-prev {
-        left: 25%; /* Adjust to bring closer to the carousel on larger screens */
+        left: 25%; 
     }
 
     .carousel-control-next {
-        right: 25%; /* Adjust to bring closer to the carousel on larger screens */
+        right: 25%; 
     }
 }
 
-/* Adjustments for mobile view if needed */
 @media (max-width: 991px) {
     .carousel-control-prev {
-        left: 10px; /* Keep closer on mobile */
+        left: 10px; 
     }
 
     .carousel-control-next {
-        right: 10px; /* Keep closer on mobile */
+        right: 10px; 
     }
 }
 
+.team-item {
+    margin: 0 15px; 
+    padding-bottom: 20px; 
+    transition: transform 0.3s; 
+}
+
+@media (max-width: 991px) {
+    .team-item {
+        margin: 0 5px; 
+    }
+}
+
+@media (max-width: 992px) {
+    .team-carousel .owl-nav {
+        padding: 0 10px; 
+    }
+
+    .team-item {
+        margin: 0;
+    }
+}
+
+/********** border **********/
 .custom-border {
     border-color: #ff8fab !important;
 }
@@ -327,33 +287,6 @@
     border-color: #522e38 !important;
 }
 
-.custom-button{
-    background-color: #ffb3c6 !important;
-    outline: none;
-    border: none; /* if you want to remove any other border */
-    box-shadow: none; /* if there's a shadow around the button */
-}
 
-.team-item {
-    margin: 0 15px; /* Add horizontal margin to give space between items */
-    padding-bottom: 20px; /* Give some space below the item */
-    transition: transform 0.3s; /* Optional: Smooth transition */
-}
-
-@media (max-width: 991px) {
-    .team-item {
-        margin: 0 5px; /* Less margin on smaller screens */
-    }
-}
-
-@media (max-width: 992px) {
-    .team-carousel .owl-nav {
-        padding: 0 10px; /* Adjust padding for better visibility */
-    }
-
-    .team-item {
-        margin: 0; /* Reset margins for smaller screens */
-    }
-}
 
 
