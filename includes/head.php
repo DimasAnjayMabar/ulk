@@ -1,6 +1,5 @@
 
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
     <!-- Fontawesome -->
     <script src="https://kit.fontawesome.com/b8cd988433.js" crossorigin="anonymous"></script>

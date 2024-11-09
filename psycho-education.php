@@ -86,30 +86,44 @@
                 <!-- Get In Touch Section -->
                 <div class="col-lg-3 col-md-6">
                     <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4 custom-border" style="color: #ffb3c6 !important;">Hubungi</h4>
-                    <p class="mb-4">No dolore ipsum accusam no lorem. Invidunt sed clita kasd clita et et dolor sed dolor</p>
-                </div>
-    
-                <!-- Contact Details Section -->
-                <div class="col-lg-3 col-md-6" style="margin-top: 7.6%;">
+                    <p class="mb-4">Hubungi atau temui kami di sini</p>
                     <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3" style="color: #ffb3c6 !important;"></i>Surabaya, Jawa Timur, Indonesia</p>
                     <p class="mb-2"><i class="fa fa-envelope text-primary me-3" style="color: #ffb3c6 !important;"></i>c14230127@john.petra.ac.id</p>
                     <p class="mb-0"><i class="fa fa-phone-alt text-primary me-3" style="color: #ffb3c6 !important;"></i>0895340299650</p>
                 </div>
-    
+
                 <!-- Follow Us Section -->
-                <div class="col-lg-3 col-md-6 ms-auto text-start">
+                <div class="col-lg-3 col-md-6 text-start">
                     <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4 custom-border" style="color: #ffb3c6 !important;">Ikuti Kami</h4>
-                    <div class="d-flex flex-column align-items-start">
-                        <div class="d-flex">
-                            <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2 custom-button" href=""><i class="fab fa-instagram"></i></a>
-                            <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2 custom-button" href=""><i class="fab fa-youtube"></i></a>
-                        </div>
+                    <p class="mb-4">Ikuti kami di sosial media</p>
+                    <div class="d-flex">
+                        <a class="btn btn-lg btn-primary rounded-circle me-2 custom-button" href=""><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-lg btn-primary rounded-circle me-2 custom-button" href=""><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Survey Section -->
+                <div class="col-lg-3 col-md-6 text-start">
+                    <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4 custom-border" style="color: #ffb3c6 !important;">Survey</h4>
+                    <p class="mb-4">Klik tombol di bawah ini untuk melakukan survey. Kepuasan pengguna sangat berarti untuk kami</p>
+                    <div class="d-flex">
+                        <a class="btn btn-lg btn-primary rounded-circle me-2 custom-button" href=""><i class="fa-solid fa-square-poll-vertical"></i></a>
+                    </div>
+                </div>
+
+                <!-- Bug Report Section -->
+                <div class="col-lg-3 col-md-6 text-start">
+                    <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4 custom-border" style="color: #ffb3c6 !important;">Lapor Bug</h4>
+                    <p class="mb-4">Klik tombol di bawah ini untuk melaporkan bug dalam website</p>
+                    <div class="d-flex">
+                        <a class="btn btn-lg btn-primary rounded-circle me-2 custom-button" href=""><i class="fa-solid fa-bug"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- Footer End -->
+
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top custom-button" id="backOnTop"><i class="bi bi-arrow-up"></i></a>
