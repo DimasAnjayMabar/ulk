@@ -3,7 +3,7 @@
 include 'includes/connection.php';
 try {
     // Query to fetch articles from the database
-    $query = "SELECT * FROM articles"; // Change this to your actual table and column names
+    $query = "SELECT * FROM article"; // Change this to your actual table and column names
     $stmt = $conn->prepare($query);
     $stmt->execute();
 
