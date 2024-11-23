@@ -14,8 +14,10 @@
     <div class="container-fluid sticky-top bg-white shadow-sm">
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
-                <a href="home-page.html" class="navbar-brand">
-                    <h1 class="m-0 text-uppercase text-primary" style="color: #ffb3c6 !important;"><i class="fa fa-clinic-medical me-2" sty></i>ULK</h1>
+                <a href="home-page.html" class="navbar-brand d-flex align-items-center">
+                    <!-- Logo Images -->
+                    <img src="assets/images/website_photo/logo-plp.jpeg" alt="Logo Part 1" style="height: 50px;" class="me-2">
+                    <img src="assets/images/website_photo/logo-wm.jpeg" alt="Logo Part 2" style="height: 50px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>

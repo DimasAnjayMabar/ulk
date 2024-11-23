@@ -13,8 +13,10 @@
     <div class="container-fluid sticky-top bg-white shadow-sm">
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
-                <a href="home-page.html" class="navbar-brand">
-                    <h1 class="m-0 text-uppercase text-primary" style="color: #ffb3c6 !important;"><i class="fa fa-clinic-medical me-2" sty></i>ULK</h1>
+                <a href="home-page.html" class="navbar-brand d-flex align-items-center">
+                    <!-- Logo Images -->
+                    <img src="assets/images/website_photo/logo-plp.jpeg" alt="Logo Part 1" style="height: 50px;" class="me-2">
+                    <img src="assets/images/website_photo/logo-wm.jpeg" alt="Logo Part 2" style="height: 50px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
@@ -43,14 +45,29 @@
             <br>
             <p class="card-text text-light" style="font-weight: bolder; text-shadow: 2px 2px 5px rgba(0, 0, 0, 1); color: #ffe5ec !important;">Tekan tombol ini untuk registrasi konseling</p>
             <br>
-            <a class="btn btn-lg btn-primary rounded-pill custom-button" id="popupAd" href="#">Hubungi Kami</a>
+            <a class="btn btn-lg btn-primary rounded-pill custom-button" id="popupAd" href="https://bit.ly/daftarkonselingULKUKWMS">Hubungi Kami</a>
         </div>
     </div>
-    <!-- Refistration End -->
+    <!-- Registration End -->
+
+    <!-- Registration Start -->
+    <div class="text-center mx-auto mb-5" style="max-width: 500px; margin-top: 5%">
+        <h1 class="display-4 border-bottom border-5 custom-border2" style="color: #522e38 !important;">SURVEY KONSELING</h1>
+    </div>
+    <div class="card mb-3 mx-auto p-3 bg-light d-flex justify-content-center align-items-center" style="max-width: 800px; min-height: 400px; border: 3px solid #d3d3d3; border-radius: 10px; overflow: hidden;">
+        <div class="card-body text-center" style="background-image: url('assets/images/website_photo/survey.png'); background-size: cover; background-position: center; background-repeat: no-repeat; width: 100%; height: 100%; border-radius: 10px;">
+            <h2 class="card-title text-light" style="margin-top: 11%; font-size: 50px; text-shadow: 2px 2px 5px rgba(0, 0, 0, 1); color: #ffe5ec !important;">Apa Sudah Pernah Mengikuti Konseling Sebelumnya?</h2>
+            <br>
+            <p class="card-text text-light" style="font-weight: bolder; text-shadow: 2px 2px 5px rgba(0, 0, 0, 1); color: #ffe5ec !important;">Tekan tombol ini untuk survey kepuasan konseling</p>
+            <br>
+            <a class="btn btn-lg btn-primary rounded-pill custom-button" id="popupAd" href="https://bit.ly/evaluasi_konselor">Isi Survey</a>
+        </div>
+    </div>
+    <!-- Registration End -->
 
 
-<!-- Footer Start -->
-<div class="container-fluid bg-dark text-light mt-5 py-5" style="background-color: #522e38 !important;">
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light mt-5 py-5" style="background-color: #522e38 !important;">
         <div class="container py-5">
             <div class="row g-5">
                 <!-- Get In Touch Section -->
@@ -93,8 +110,6 @@
         </div>
     </div>
     <!-- Footer End -->
-
-
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top custom-button" id="backOnTop"><i class="bi bi-arrow-up"></i></a>
