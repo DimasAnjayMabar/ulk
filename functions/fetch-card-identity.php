@@ -1,5 +1,5 @@
 <?php
-    require("includes/connection.php");
+    require("../includes/connection.php");
 
     // Query to fetch articles
     $query = "SELECT * FROM article";

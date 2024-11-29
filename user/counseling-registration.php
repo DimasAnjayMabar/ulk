@@ -3,7 +3,7 @@
 
 <head>
     <?php 
-        require("includes/head.php");
+        require("../includes/head.php");
     ?>
     <title>Unit Layanan Psikologi</title>
 </head>
@@ -13,10 +13,10 @@
     <div class="container-fluid sticky-top bg-white shadow-sm">
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
-                <a href="home-page.html" class="navbar-brand d-flex align-items-center">
+                <a href="counseling-registration.php" class="navbar-brand d-flex align-items-center">
                     <!-- Logo Images -->
-                    <img src="assets/images/website_photo/logo-plp.jpeg" alt="Logo Part 1" style="height: 50px;" class="me-2">
-                    <img src="assets/images/website_photo/logo-wm.jpeg" alt="Logo Part 2" style="height: 50px;">
+                    <img src="../assets/images/website_photo/logo-plp.jpeg" alt="Logo Part 1" style="height: 50px;" class="me-2">
+                    <img src="../assets/images/website_photo/logo-wm.jpeg" alt="Logo Part 2" style="height: 50px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
@@ -40,7 +40,7 @@
         <h1 class="display-4 border-bottom border-5 custom-border2" style="color: #522e38 !important;">REGISTRASI KONSELING</h1>
     </div>
     <div class="card mb-3 mx-auto p-3 bg-light d-flex justify-content-center align-items-center" style="max-width: 800px; min-height: 400px; border: 3px solid #d3d3d3; border-radius: 10px; overflow: hidden;">
-        <div class="card-body text-center" style="background-image: url('assets/images/website_photo/group-community.png'); background-size: cover; background-position: center; background-repeat: no-repeat; width: 100%; height: 100%; border-radius: 10px;">
+        <div class="card-body text-center" style="background-image: url('../assets/images/website_photo/group-community.png'); background-size: cover; background-position: center; background-repeat: no-repeat; width: 100%; height: 100%; border-radius: 10px;">
             <h2 class="card-title text-light" style="margin-top: 11%; font-size: 50px; text-shadow: 2px 2px 5px rgba(0, 0, 0, 1); color: #ffe5ec !important;">Registrasi Konseling Di Sini</h2>
             <br>
             <p class="card-text text-light" style="font-weight: bolder; text-shadow: 2px 2px 5px rgba(0, 0, 0, 1); color: #ffe5ec !important;">Tekan tombol ini untuk registrasi konseling</p>
@@ -55,7 +55,7 @@
         <h1 class="display-4 border-bottom border-5 custom-border2" style="color: #522e38 !important;">SURVEY KONSELING</h1>
     </div>
     <div class="card mb-3 mx-auto p-3 bg-light d-flex justify-content-center align-items-center" style="max-width: 800px; min-height: 400px; border: 3px solid #d3d3d3; border-radius: 10px; overflow: hidden;">
-        <div class="card-body text-center" style="background-image: url('assets/images/website_photo/survey.png'); background-size: cover; background-position: center; background-repeat: no-repeat; width: 100%; height: 100%; border-radius: 10px;">
+        <div class="card-body text-center" style="background-image: url('../assets/images/website_photo/survey.png'); background-size: cover; background-position: center; background-repeat: no-repeat; width: 100%; height: 100%; border-radius: 10px;">
             <h2 class="card-title text-light" style="margin-top: 11%; font-size: 50px; text-shadow: 2px 2px 5px rgba(0, 0, 0, 1); color: #ffe5ec !important;">Apa Sudah Pernah Mengikuti Konseling Sebelumnya?</h2>
             <br>
             <p class="card-text text-light" style="font-weight: bolder; text-shadow: 2px 2px 5px rgba(0, 0, 0, 1); color: #ffe5ec !important;">Tekan tombol ini untuk survey kepuasan konseling</p>

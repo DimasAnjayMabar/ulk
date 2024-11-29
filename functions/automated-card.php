@@ -1,6 +1,6 @@
 <?php
 // Include the database connection file
-include 'includes/connection.php';
+include '../includes/connection.php';
 try {
     // Query to fetch articles from the database
     $query = "SELECT * FROM article"; // Change this to your actual table and column names

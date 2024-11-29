@@ -1,5 +1,5 @@
 <?php
-require("includes/connection.php");
+require("../includes/connection.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
     $articleId = $_POST['id'];

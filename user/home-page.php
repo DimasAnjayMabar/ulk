@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <?php 
-        require("includes/head.php");
+        require("../includes/head.php");
     ?>
     <title>Unit Layanan Psikologi</title>
 </head>
@@ -11,10 +11,10 @@
     <div class="container-fluid sticky-top bg-white shadow-sm">
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
-                <a href="home-page.html" class="navbar-brand d-flex align-items-center">
+                <a href="home-page.php" class="navbar-brand d-flex align-items-center">
                     <!-- Logo Images -->
-                    <img src="assets/images/website_photo/logo-plp.jpeg" alt="Logo Part 1" style="height: 50px;" class="me-2">
-                    <img src="assets/images/website_photo/logo-wm.jpeg" alt="Logo Part 2" style="height: 50px;">
+                    <img src="../assets/images/website_photo/logo-plp.jpeg" alt="Logo Part 1" style="height: 50px;" class="me-2">
+                    <img src="../assets/images/website_photo/logo-wm.jpeg" alt="Logo Part 2" style="height: 50px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
@@ -33,7 +33,7 @@
     <!-- Navbar End -->
 
     <!-- Hero Start -->
-    <div class="container-fluid bg-primary py-5 mb-5 hero-header" style="background-image: url('assets/images/website_photo/hero.jpg');">
+    <div class="container-fluid bg-primary py-5 mb-5 hero-header" style="background-image: url('../assets/images/website_photo/hero.jpg');">
         <div class="container py-5">
             <div class="row justify-content-start">
                 <div class="col-lg-8 text-center text-lg-start">
@@ -54,7 +54,7 @@
             <div class="row gx-5">
                 <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100 rounded" src="assets/images/website_photo/team-2.jpg" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100 rounded" src="../assets/images/website_photo/team-2.jpg" style="object-fit: cover;">
                     </div>
                 </div>
                 <div class="col-lg-7">
