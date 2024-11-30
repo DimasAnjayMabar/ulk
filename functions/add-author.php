@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt->bindParam(':nama_author', $author_name);
             $stmt->execute();
 
-            header("Location: ../login-page.php");
+            header("Location: ../admin/login-page.php");
             exit();
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();

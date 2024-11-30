@@ -1,8 +1,13 @@
 <?php
 $servername = "localhost";  // Hostname (usually localhost)
 $username = "postgres";         // PostgreSQL username
-$password = "admin";             // PostgreSQL password (if any)
-$database = "digital_leadership";  // PostgreSQL database name
+$password = "12345678";             // PostgreSQL password (if any)
+$database = "postgres";  // PostgreSQL database name
+
+// $servername = "localhost";  // Hostname (usually localhost)
+// $username = "postgres";         // PostgreSQL username
+// $password = "admin";             // PostgreSQL password (if any)
+// $database = "postgres";  // PostgreSQL database name
 
 try {
     // Create the connection string for PostgreSQL

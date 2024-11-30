@@ -7,3 +7,4 @@
                 <video controls><source src="<?php echo $article['video_path']; ?>" type="video/mp4"></video>
             <?php } ?>
 </div>
+assets/images/article_photo/layanan-konseling-gratis.jpg

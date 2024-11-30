@@ -6,7 +6,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php require("../includes/head.php"); ?>
+    <?php 
+        require("../includes/head.php");
+        include('logout-modal.php');
+        require("../functions/separate-paragraph.php")
+    ?>
     <title>Unit Layanan Psikologi</title>
 </head>
 <body>
@@ -24,11 +28,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
-                        <a href="home-page.php" class="nav-item nav-link">Menu Utama</a>
-                        <a href="self-report.php" class="nav-item nav-link">Tes Mental</a>
-                        <a href="counseling-registration.php" class="nav-item nav-link">Registrasi Konseling</a>
-                        <a href="psycho-education.php" class="nav-item nav-link active">Psiko Edukasi</a>
-                    </div>
+                        <a href="home-page.php" class="nav-item nav-link ">Insert</a>
+                        <a href="database-view.php" class="nav-item nav-link active">Database</a>                    </div>
                 </div>
             </nav>
         </div>
@@ -49,7 +50,12 @@
             <!-- If no video link, display image -->
             <img src="<?php echo $article['photo_path']; ?>" class="rounded" alt="Article Image" id="article-image">
         <?php endif; ?>
-        <p style="color: #522e38 !important; font-weight: bold; margin-top: 2%;"><?php echo $article['content']; ?></p>
+        <div class="article-content">
+            <?php 
+            // Assuming $article['content'] contains the article text
+            echo '<p class="paragraph-separator">' . splitParagraphs($article['content']) . '</p>';
+            ?>
+        </div>
     </div>
     <!-- Article End -->
 
@@ -58,7 +64,7 @@
     <div class="container" style="margin-top: 5%;">
         <div class="row justify-content-between align-items-center mb-3">
             <div class="col-auto">
-                <a class="btn btn-lg btn-primary rounded-pill custom-button" href="psycho-education.php">Menu Utama</a>
+                <a class="btn btn-lg btn-primary rounded-pill custom-button" href="database-view.php">Menu Utama</a>
             </div>
             <div class="col-auto">
                 <?php if (isset($prevId)) { ?>
@@ -127,11 +133,12 @@
     </div>
     <!-- Footer End -->
 
+
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top custom-button" id="backOnTop"><i class="bi bi-arrow-up"></i></a>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>\
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

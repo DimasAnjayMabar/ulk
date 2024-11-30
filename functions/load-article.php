@@ -5,7 +5,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
     $articleId = $_POST['id'];
 
     // Fetch the article
-    $stmt = $conn->prepare("SELECT * FROM article WHERE id = ?");
+    $stmt = $conn->prepare("
+        SELECT article.*, author.nama_author
+        FROM article
+        INNER JOIN author ON article.id_author = author.id_author
+        WHERE article.id = ?
+    ");
     $stmt->execute([$articleId]);
     $article = $stmt->fetch();
 
@@ -27,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
     
         // Set the prevId and nextId with default values or handle edge cases
         $prevId = $prevArticle['id'] ?? $lastArticleId; // If no previous article, go to the last article
-        $nextId = $nextArticle['id'] ?? 1; // If no next article, go to the first article
+        $nextId = $nextArticle['id'] ?? $lastArticleId; // If no next article, go to the first article
     }
     
 } else {

@@ -56,7 +56,7 @@
             <div data-mdb-input-init class="form-outline mb-4" style="margin-top:5%; color: #522e38 !important;">
                 <input type="email" id="form2Example1" class="form-control" />
                 <label class="form-label" for="form2Example1">Username</label>
-                <div id="emailError" class="error"></div> <!-- Error message for username -->
+                <div id="usernameError" class="error"></div> <!-- Error message for username -->
             </div>
 
             <!-- Password input -->
@@ -90,11 +90,26 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+        // Trigger the login form submission when Enter is pressed
+        document.getElementById("form2Example1").addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();  // Prevent form submission
+                validateForm(event);      // Trigger form validation and submission
+            }
+        });
+
+        document.getElementById("form2Example2").addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();  // Prevent form submission
+                validateForm(event);      // Trigger form validation and submission
+            }
+        });
+        
         function validateForm(event) {
             event.preventDefault(); // Prevent default form submission
 
             // Clear previous error messages
-            document.getElementById("emailError").textContent = '';
+            document.getElementById("usernameError").textContent = '';
             document.getElementById("passwordError").textContent = '';
 
             // Get input values
@@ -105,7 +120,7 @@
 
             // Validate username
             if (username === '') {
-                document.getElementById("emailError").textContent = 'Username diperlukan';
+                document.getElementById("usernameError").textContent = 'Username diperlukan';
                 isValid = false;
             }
 
@@ -129,11 +144,19 @@
                             // Redirect to the Add Article page on successful login
                             window.location.href = "add-article.php";
                         } else {
-                            // Display error message
-                            alert(response); // Alternatively, display the error in the form
+                            // Display the backend error message directly in the form
+                            if (response === "User tidak ditemukan") {
+                                document.getElementById("usernameError").textContent = response;
+                            } else if (response === "Password salah") {
+                                document.getElementById("passwordError").textContent = response;
+                            } else {
+                                // Generic error message if response is not as expected
+                                document.getElementById("passwordError").textContent = "Login gagal. Silahkan coba lagi.";
+                            }
                         }
                     },
                     error: function () {
+                        // In case of any AJAX errors
                         alert("An error occurred while processing your request.");
                     },
                 });

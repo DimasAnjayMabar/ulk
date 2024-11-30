@@ -1,6 +1,8 @@
 <?php
 require('../includes/connection.php'); // Adjust the path to your connection file
 
+$errorMessage = "";
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['username'], $_POST['password']) && !empty($_POST['username']) && !empty($_POST['password'])) {
         $username = $_POST['username'];
@@ -26,10 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                     echo "success"; // Send success response
                 } else {
-                    echo "Password salah.";
+                    $errorMessage = "Password salah";
                 }
             } else {
-                echo "Username tidak ditemukan.";
+                $errorMessage = "User tidak ditemukan";
             }
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();

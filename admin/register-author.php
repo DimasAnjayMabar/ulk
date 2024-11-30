@@ -93,7 +93,7 @@
 
 <body>
     <div class="container">
-        <form id="registrationForm" method="POST" action="functions/add-author.php">
+        <form id="registrationForm" method="POST" action="../functions/add-author.php">
             <div class="text-center">
                 <h1 style="color: #522e38 !important;">Registrasi Author</h1>
             </div>
@@ -101,7 +101,7 @@
             <div data-mdb-input-init class="form-outline mb-4" style="margin-top:5%; color: #522e38 !important;">
                 <input type="email" id="form2Example1" name="username" class="form-control" required />
                 <label class="form-label" for="form2Example1">Username</label>
-                <div id="emailError" class="error"></div> <!-- Error message container -->
+                <div id="usernameError" class="error"></div> <!-- Error message container -->
             </div>
 
             <div data-mdb-input-init class="form-outline mb-4" style="color: #522e38 !important;">
@@ -127,18 +127,6 @@
         </form>
     </div>
 
-    <!-- Modal -->
-    <div id="confirmationModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Apakah Anda yakin ingin menyimpan?</h2>
-            <div class="modal-footer">
-                <a class="btn btn-lg btn-primary rounded-pill custom-button" onclick="saveData()">Simpan</a>
-                <a class="btn btn-lg btn-primary rounded-pill custom-button" onclick="closeModal()">Kembali</a>
-            </div>
-        </div>
-    </div>
-
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -146,24 +134,42 @@
     <script>
         // Show the modal
         function showModal() {
-            document.getElementById("confirmationModal").style.display = "flex"; /* Use flex to center */
+            // Create the modal structure as innerHTML
+            const modalHTML = `
+                <div id="confirmationModal" class="modal" style="display: flex;">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeModal()">&times;</span>
+                        <h2>Apakah Anda yakin ingin menyimpan?</h2>
+                        <div class="modal-footer">
+                            <a class="btn btn-lg btn-primary rounded-pill custom-button" onclick="closeModal()">Kembali</a>
+                            <a class="btn btn-lg btn-primary rounded-pill custom-button" onclick="saveData()">Simpan</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Append the modal to the body
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
         }
 
-        // Close the modal
+        // Close the modal and remove it from the DOM
         function closeModal() {
-            document.getElementById("confirmationModal").style.display = "none";
+            const modal = document.getElementById("confirmationModal");
+            if (modal) {
+                modal.remove();
+            }
         }
 
         // Save action
         function saveData() {
             closeModal(); // Close the modal after saving
-            // You can add logic to save the form data or redirect the user here
-            document.getElementById("registrationForm").submit();        
+            // Submit the form
+            document.getElementById("registrationForm").submit();
         }
 
         // Form validation function
         function validateForm(event) {
-            event.preventDefault();  // Prevent form submission
+            event.preventDefault(); // Prevent form submission
 
             // Clear previous error messages
             document.getElementById("emailError").textContent = '';
@@ -175,7 +181,7 @@
 
             // Validate email
             if (document.getElementById("form2Example1").value === '') {
-                document.getElementById("emailError").textContent = 'Username tidak boleh kosong';
+                document.getElementById("usernameError").textContent = 'Username tidak boleh kosong';
                 isValid = false;
             }
 
@@ -196,11 +202,6 @@
                 showModal();
             }
         }
-
-        // Hide modal when page loads
-        window.onload = function() {
-            document.getElementById("confirmationModal").style.display = "none";  // Make sure modal is hidden initially
-        };
     </script>
 </body>
 </html>

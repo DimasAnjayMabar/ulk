@@ -8,8 +8,61 @@
 <html lang="en">
 
 <head>
-    <?php require("../includes/head.php"); ?>
+    <?php 
+        require("../includes/head.php");
+        include('logout-modal.php');
+    ?>
     <title>Unit Layanan Psikologi</title>
+    <style>
+        form {
+            width: 100%;
+            max-width: 400px;     /* Optional: limit the form width */
+        }
+
+        .form-control:focus {
+            border-color: #ffb3c6 !important; /* Change the border color on focus */
+            box-shadow: 0 0 0 0.2rem rgba(255, 179, 198, 0.25) !important; /* Optional: add a soft glow */
+        }
+         /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            max-width: 600px;
+            border-radius: 8px;
+        }
+
+        .close {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -29,7 +82,7 @@
                     <div class="navbar-nav ms-auto py-0">
                         <a href="add-article.php" class="nav-item nav-link ">Insert</a>
                         <a href="database-view.php" class="nav-item nav-link active">Database</a>
-                        <a href="logout-modal.php" class="nav-item nav-link">Log Out</a>
+                        <a href="#" class="nav-item nav-link" onclick="openModal()">Log Out</a>
                     </div>
                 </div>
             </nav>
@@ -49,28 +102,33 @@
                     foreach ($articles as $article) {
                         $title = !empty($article['title']) ? htmlspecialchars($article['title']) : "Default Title";
                         $content = !empty($article['content']) ? htmlspecialchars($article['content']) : "No content available.";
-                        $picture = !empty($article['photo_path']) ? htmlspecialchars($article['photo_path']) : "assets/images/website_photo/empty.png";
+                        $picture = !empty($article['photo_path']) ? htmlspecialchars($article['photo_path']) : "../assets/images/website_photo/empty.png";
                         $articleId = $article['id'];  // Still needed for the redirect link
                         
                         // Limit content for preview
                         $contentPreview = limitWords($content, 12);
                         
                         echo '
-                        <div class="col-lg-4 col-md-6">
-                            <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                                <div>
-                                    <img src="' . $picture . '" alt="Service Icon" class="rounded card-image" style="width: 150px; height: 130px;">
+                            <div class="col-lg-4 col-md-6">
+                                <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                                    <div>
+                                        <img src="' . $picture . '" alt="Service Icon" class="rounded card-image" style="width: 150px; height: 130px;">
+                                    </div>
+                                    <h4 class="mb-3 card-title" style="color: #522e38 !important; margin-top: 5%;">' . $title . '</h4>
+                                    <p class="m-0 card-content" style="color: #522e38 !important; font-weight: bold;">' . $contentPreview . '</p>
+                                    
+                                    <!-- Button container with Flexbox -->
+                                    <div class="d-flex gap-3">
+                                        <!-- First button -->
+                                        <form action="detail-article.php" method="POST" style="display:inline;">
+                                            <input type="hidden" name="id" value="' . $articleId . '">
+                                            <button type="submit" class="btn btn-lg btn-primary rounded-pill custom-button" style="flex-grow: 0;">
+                                                <i class="bi bi-arrow-right text" style="color: #522e38 !important;"></i>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
-                                <h4 class="mb-3 card-title" style="color: #522e38 !important; margin-top: 5%;">' . $title . '</h4>
-                                <p class="m-0 card-content" style="color: #522e38 !important; font-weight: bold;">' . $contentPreview . '</p>
-                                <form action="detail-article.php" method="POST" style="display:inline;">
-                                    <input type="hidden" name="id" value="' . $articleId . '">
-                                    <button type="submit" class="btn btn-lg btn-primary rounded-pill custom-button">
-                                        <i class="bi bi-arrow-right text" style="color: #522e38 !important;"></i>
-                                    </button>
-                                </form>
                             </div>
-                        </div>
                         ';
                     }
                 }
@@ -87,7 +145,7 @@
             <!-- Get In Touch Section -->
             <div class="col-lg-3 col-md-6">
                 <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4 custom-border" style="color: #ffb3c6 !important;">Catatan</h4>
-                <p class="mb-4">Ini adalah isi artikel yang sudah ditambahlan dalam database.</p>
+                <p class="mb-4">Ini adalah isi artikel yang sudah ditambahkan dalam database.</p>
             </div>
         </div>
     </div>

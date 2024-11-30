@@ -17,6 +17,52 @@
             border-color: #ffb3c6 !important; /* Change the border color on focus */
             box-shadow: 0 0 0 0.2rem rgba(255, 179, 198, 0.25) !important; /* Optional: add a soft glow */
         }
+         /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            max-width: 600px;
+            border-radius: 8px;
+        }
+
+        .close {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+         /* Error message */
+         .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
     </style>
 </head>
 
@@ -48,37 +94,43 @@
     <!-- Add Article Start -->
     <div class="text-center mx-auto mb-5" style="max-width: 500px;">
         <h1 class="display-4 border-bottom border-5 custom-border2" style="color: #522e38 !important;">ARTIKEL</h1>
-    </div>
+    </div id="registrationForm" method="POST" action="../functions/insert-article.php">
     <div class="card mb-3 mx-auto p-3 bg-light d-flex justify-content-center align-items-center" style="max-width: 800px; min-height: 400px; border: 3px solid #d3d3d3; border-radius: 10px; overflow: hidden;">
         <div class="card-body text-center">
             <h6 class="card-subtitle mb-2 text-body-secondary" style="color: #522e38 !important;">Tambah Artikel Baru</h6>
-            <form>
+            <form id="registrationForm" method="POST" action="../functions/insert-article.php">
                 <div data-mdb-input-init class="form-outline mb-4" style="margin-top:5%; color: #522e38 !important;">
-                    <input type="email" id="form2Example1" name="username" class="form-control" required />
-                    <label class="form-label" for="form2Example1">Judul</label>
-                    <div id="emailError" class="error"></div> <!-- Error message container -->
+                    <input type="title" id="form2Example1_title" name="title" class="form-control" required />
+                    <label class="form-label" for="form2Example1_title">Judul</label>
+                    <div id="titleError" class="error"></div> <!-- Error message container -->
                 </div>
                 <div data-mdb-input-init class="form-outline mb-4" style="margin-top:5%; color: #522e38 !important;">
-                    <input type="email" id="form2Example1" name="username" class="form-control" required />
-                    <label class="form-label" for="form2Example1">Konten</label>
-                    <div id="emailError" class="error"></div> <!-- Error message container -->
+                    <input type="content" id="form2Example1_content" name="content" class="form-control" required />
+                    <label class="form-label" for="form2Example1_content">Konten</label>
+                    <div id="contentError" class="error"></div> <!-- Error message container -->
                 </div>
                 <div data-mdb-input-init class="form-outline mb-4" style="margin-top:5%; color: #522e38 !important;">
-                    <input type="email" id="form2Example1" name="username" class="form-control" required />
-                    <label class="form-label" for="form2Example1">Directory Foto</label>
-                    <div id="emailError" class="error"></div> <!-- Error message container -->
+                    <input type="photo" id="form2Example1_photo" name="photo_path" class="form-control" required />
+                    <label class="form-label" for="form2Example1_photo">Directory Foto</label>
+                    <div id="directoryError" class="error"></div> <!-- Error message container -->
                 </div>
                 <div data-mdb-input-init class="form-outline mb-4" style="margin-top:5%; color: #522e38 !important;">
-                    <input type="email" id="form2Example1" name="username" class="form-control" required />
-                    <label class="form-label" for="form2Example1">Link Video</label>
-                    <div id="emailError" class="error"></div> <!-- Error message container -->
+                    <input type="video" id="form2Example1_video" name="video_link" class="form-control" required />
+                    <label class="form-label" for="form2Example1_video">Link Video</label>
+                    <div id="linkError" class="error"></div> <!-- Error message container -->
                 </div>
-                <a class="btn btn-lg btn-primary rounded-pill custom-button" href="login-page.php">Tambah</a>
+                <div class="form-outline mb-4" style="margin-top:5%; color: #522e38 !important;">
+                    <select id="authorDropdown" name="id_author" class="form-control" required>
+                        <option value="" disabled selected>Pilih Penulis</option>
+                        <!-- Options will be dynamically populated -->
+                    </select>
+                    <label class="form-label" for="authorDropdown">Penulis</label>
+                </div>
+                <a type="button" class="btn btn-lg btn-primary rounded-pill custom-button" onclick="showModal()">Tambah</a>
             </form>
         </div>
     </div>
     <!-- Add Article End -->
-
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light mt-5 py-5" style="background-color: #522e38 !important;">
@@ -96,5 +148,146 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script for Fetching Author -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Fetch authors on page load
+            fetchAuthors();
+        });
+
+        function fetchAuthors() {
+            // The endpoint that returns authors in JSON format
+            const url = '../functions/fetch-author.php'; // Replace with the actual path to your PHP script
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.error) {
+                        console.error(data.error);
+                        return;
+                    }
+                    populateAuthorsDropdown(data);
+                })
+                .catch(error => {
+                    console.error('Error fetching authors:', error);
+                });
+        }
+
+        function populateAuthorsDropdown(authors) {
+            const dropdown = document.getElementById("authorDropdown");
+            // Clear existing options except the placeholder
+            dropdown.innerHTML = '<option value="" disabled selected>Pilih Penulis</option>';
+
+            // Populate dropdown with author options
+            authors.forEach(author => {
+                const option = document.createElement("option");
+                option.value = author.id_author; // Use `id_author` as the option value
+                option.textContent = author.nama_author; // Display `nama_author` in the dropdown
+                dropdown.appendChild(option);
+            });
+        }
+    </script>
+
+    <!-- Script for Inserting Added Article -->
+    <script>
+        // Trigger the login form submission when Enter is pressed
+        document.getElementById("form2Example1_title").addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();  // Prevent form submission
+                validateForm(event);      // Trigger form validation and submission
+            }
+        });
+
+        document.getElementById("form2Example1_content").addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();  // Prevent form submission
+                validateForm(event);      // Trigger form validation and submission
+            }
+        });
+
+        document.getElementById("form2Example1_photo").addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();  // Prevent form submission
+                validateForm(event);      // Trigger form validation and submission
+            }
+        });
+
+        document.getElementById("form2Example1_video").addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();  // Prevent form submission
+                validateForm(event);      // Trigger form validation and submission
+            }
+        });
+
+        // Show the modal
+        function showModal() {
+            // Create the modal structure as innerHTML
+            const modalHTML = `
+                <div id="confirmationModal" class="modal" style="display: flex;">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeModal()">&times;</span>
+                        <h2>Apakah Anda yakin ingin menyimpan?</h2>
+                        <div class="modal-footer">
+                            <a class="btn btn-lg btn-primary rounded-pill custom-button" onclick="closeModal()">Kembali</a>
+                            <a class="btn btn-lg btn-primary rounded-pill custom-button" onclick="saveData()">Simpan</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Append the modal to the body
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+        }
+
+        // Close the modal and remove it from the DOM
+        function closeModal() {
+            const modal = document.getElementById("confirmationModal");
+            if (modal) {
+                modal.remove();
+            }
+        }
+
+        // Save action
+        function saveData() {
+            closeModal(); // Close the modal after saving
+            // Submit the form
+            document.getElementById("registrationForm").submit();
+        }
+
+        // Form validation function
+        function validateForm(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Clear previous error messages
+            document.getElementById("titleError").textContent = '';
+            document.getElementById("contentError").textContent = '';
+        
+            // Check if all fields are filled
+            let isValid = true;
+
+            // Validate title
+            if (document.getElementById("form2Example1_title").value === '') {
+                document.getElementById("titleError").textContent = 'Judul tidak boleh kosong';
+                isValid = false;
+            }
+
+            // Validate content
+            if (document.getElementById("form2Example1_content").value === '') {
+                document.getElementById("contentError").textContent = 'Konten tidak boleh kosong';
+                isValid = false;
+            }
+
+            // If all fields are valid, show the modal
+            if (isValid) {
+                showModal();
+            }
+        }
+    </script>
 </body>
 </html>
