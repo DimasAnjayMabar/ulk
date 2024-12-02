@@ -138,7 +138,7 @@
                                         <!-- Delete button -->
                                         <form action="../functions/delete-article.php" method="POST" id="delete-article">
                                             <input type="hidden" name="id" value="' . $articleId . '">
-                                            <button type="submit" class="btn btn-lg btn-danger rounded-pill custom-border" style="background-color: #ffb3c6 !important; border-color: #ffb3c6 !important">
+                                            <button type="submit" class="btn btn-lg btn-danger rounded-pill custom-border" style="background-color: #ffb3c6 !important; border-color: #ffb3c6 !important" onclick="showModal(event)">
                                                 <i class="bi bi-trash text" style="color: #ffffff;"></i>
                                             </button>
                                         </form>
@@ -177,10 +177,8 @@
     
     <!-- Script for Deleting Article -->
     <script>
-        // Add event listener to the "Delete" button
-        document.getElementById("deleteButton").addEventListener("click", showModal);
-
-        function showModal() {
+        function showModal(event) {
+            event.preventDefault();
             const modalHTML = `
                 <div id="confirmationModal" class="modal" style="display: flex;">
                     <div class="modal-content">
@@ -197,8 +195,8 @@
             // Append the modal to the body
             document.body.insertAdjacentHTML('beforeend', modalHTML);
 
-            // Add event listener for keydown to handle Enter and Escape keys
             document.addEventListener("keydown", handleKeydownInModal);
+            document.addEventListener("keydown", handleKeydownInModal2);
         }
 
         function closeModal() {
@@ -220,6 +218,9 @@
             if (event.key === "Escape") {
                 closeModal();
             }
+        }
+
+        function handleKeydownInModal2(event){
             if (event.key === "Enter") {
                 event.preventDefault(); // Prevent form submission via Enter
                 deleteData(); // Call delete function if Enter is pressed
