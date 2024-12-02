@@ -93,12 +93,19 @@
 
     <!-- Add Article Start -->
     <div class="text-center mx-auto mb-5" style="max-width: 500px;">
-        <h1 class="display-4 border-bottom border-5 custom-border2" style="color: #522e38 !important;">ARTIKEL</h1>
+        <h1 class="display-4 border-bottom border-5 custom-border2" style="color: #522e38 !important;">ARTIKEL BARU</h1>
     </div id="registrationForm" method="POST" action="../functions/insert-article.php">
     <div class="card mb-3 mx-auto p-3 bg-light d-flex justify-content-center align-items-center" style="max-width: 800px; min-height: 400px; border: 3px solid #d3d3d3; border-radius: 10px; overflow: hidden;">
         <div class="card-body text-center">
             <h6 class="card-subtitle mb-2 text-body-secondary" style="color: #522e38 !important;">Tambah Artikel Baru</h6>
             <form id="registrationForm" method="POST" action="../functions/insert-article.php">
+                <div class="form-outline mb-4" style="margin-top:5%; color: #522e38 !important;">
+                    <select id="authorDropdown" name="id_author" class="form-control" required>
+                        <option value="" disabled selected>Pilih Penulis</option>
+                        <!-- Options will be dynamically populated -->
+                    </select>
+                    <label class="form-label" for="authorDropdown">Penulis</label>
+                </div>
                 <div data-mdb-input-init class="form-outline mb-4" style="margin-top:5%; color: #522e38 !important;">
                     <input type="title" id="form2Example1_title" name="title" class="form-control" required />
                     <label class="form-label" for="form2Example1_title">Judul</label>
@@ -118,13 +125,6 @@
                     <input type="video" id="form2Example1_video" name="video_link" class="form-control" required />
                     <label class="form-label" for="form2Example1_video">Link Video</label>
                     <div id="linkError" class="error"></div> <!-- Error message container -->
-                </div>
-                <div class="form-outline mb-4" style="margin-top:5%; color: #522e38 !important;">
-                    <select id="authorDropdown" name="id_author" class="form-control" required>
-                        <option value="" disabled selected>Pilih Penulis</option>
-                        <!-- Options will be dynamically populated -->
-                    </select>
-                    <label class="form-label" for="authorDropdown">Penulis</label>
                 </div>
                 <a type="button" class="btn btn-lg btn-primary rounded-pill custom-button" onclick="showModal()">Tambah</a>
             </form>
@@ -234,8 +234,8 @@
                         <span class="close" onclick="closeModal()">&times;</span>
                         <h2>Apakah Anda yakin ingin menyimpan?</h2>
                         <div class="modal-footer">
-                            <a class="btn btn-lg btn-primary rounded-pill custom-button" onclick="closeModal()">Kembali</a>
-                            <a class="btn btn-lg btn-primary rounded-pill custom-button" onclick="saveData()">Simpan</a>
+                            <button class="btn btn-lg btn-primary rounded-pill custom-button" onclick="closeModal()">Kembali</button>
+                            <button class="btn btn-lg btn-primary rounded-pill custom-button" onclick="saveData()">Simpan</button>
                         </div>
                     </div>
                 </div>
@@ -243,6 +243,9 @@
 
             // Append the modal to the body
             document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+            // Add event listener for keydown to handle Enter and Escape keys
+            document.addEventListener("keydown", handleKeydownInModal);
         }
 
         // Close the modal and remove it from the DOM
@@ -251,6 +254,9 @@
             if (modal) {
                 modal.remove();
             }
+
+            // Remove the keydown event listener when the modal is closed
+            document.removeEventListener("keydown", handleKeydownInModal);
         }
 
         // Save action
@@ -258,6 +264,18 @@
             closeModal(); // Close the modal after saving
             // Submit the form
             document.getElementById("registrationForm").submit();
+        }
+
+        // Handle keydown events for Enter and Escape keys
+        function handleKeydownInModal(event) {
+            if (event.key === "Enter") {
+                // Prevent default action to avoid conflicts
+                event.preventDefault();
+                saveData();
+            } else if (event.key === "Escape") {
+                event.preventDefault();
+                closeModal();
+            }
         }
 
         // Form validation function

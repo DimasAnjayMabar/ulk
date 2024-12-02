@@ -59,7 +59,6 @@
     </div>
     <!-- Article End -->
 
-
     <!-- Navigator Start -->
     <div class="container" style="margin-top: 5%;">
         <div class="row justify-content-between align-items-center mb-3">

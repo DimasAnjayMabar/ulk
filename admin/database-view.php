@@ -117,13 +117,29 @@
                                     <h4 class="mb-3 card-title" style="color: #522e38 !important; margin-top: 5%;">' . $title . '</h4>
                                     <p class="m-0 card-content" style="color: #522e38 !important; font-weight: bold;">' . $contentPreview . '</p>
                                     
-                                    <!-- Button container with Flexbox -->
-                                    <div class="d-flex gap-3">
-                                        <!-- First button -->
-                                        <form action="detail-article.php" method="POST" style="display:inline;">
+                                    <!-- Button container -->
+                                    <div class="button-container">
+                                        <!-- View button -->
+                                        <form action="detail-article.php" method="POST">
                                             <input type="hidden" name="id" value="' . $articleId . '">
-                                            <button type="submit" class="btn btn-lg btn-primary rounded-pill custom-button" style="flex-grow: 0;">
-                                                <i class="bi bi-arrow-right text" style="color: #522e38 !important;"></i>
+                                            <button type="submit" class="btn btn-lg btn-primary rounded-pill" style="background-color: #ffb3c6 !important; border-color: #ffb3c6 !important">
+                                                <i class="bi bi-arrow-right text" style="color: #ffffff"></i>
+                                            </button>
+                                        </form>
+
+                                        <!-- Edit button -->
+                                        <form action="edit-article.php" method="POST">
+                                            <input type="hidden" name="id" value="' . $articleId . '">
+                                            <button type="submit" class="btn btn-lg btn-warning rounded-pill custom-border" style="background-color: #ffb3c6 !important; border-color: #ffb3c6 !important">
+                                                <i class="bi bi-pencil text" style="color: #ffffff"></i>
+                                            </button>
+                                        </form>
+
+                                        <!-- Delete button -->
+                                        <form action="../functions/delete-article.php" method="POST" id="delete-article">
+                                            <input type="hidden" name="id" value="' . $articleId . '">
+                                            <button type="submit" class="btn btn-lg btn-danger rounded-pill custom-border" style="background-color: #ffb3c6 !important; border-color: #ffb3c6 !important">
+                                                <i class="bi bi-trash text" style="color: #ffffff;"></i>
                                             </button>
                                         </form>
                                     </div>
@@ -145,7 +161,7 @@
             <!-- Get In Touch Section -->
             <div class="col-lg-3 col-md-6">
                 <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4 custom-border" style="color: #ffb3c6 !important;">Catatan</h4>
-                <p class="mb-4">Ini adalah isi artikel yang sudah ditambahkan dalam database.</p>
+                <p class="mb-4">Ini adalah isi artikel yang sudah ditambahkan dalam database. Perhatian!, satu kali klik akan langsung terproses pada program</p>
             </div>
         </div>
     </div>
@@ -158,5 +174,57 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Script for Deleting Article -->
+    <script>
+        // Add event listener to the "Delete" button
+        document.getElementById("deleteButton").addEventListener("click", showModal);
+
+        function showModal() {
+            const modalHTML = `
+                <div id="confirmationModal" class="modal" style="display: flex;">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeModal()">&times;</span>
+                        <h2>Apakah Anda yakin ingin menghapus?</h2>
+                        <div class="modal-footer">
+                            <button class="btn btn-lg btn-primary rounded-pill custom-button" onclick="closeModal()">Kembali</button>
+                            <button class="btn btn-lg btn-primary rounded-pill custom-button" onclick="deleteData()">Hapus</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Append the modal to the body
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+            // Add event listener for keydown to handle Enter and Escape keys
+            document.addEventListener("keydown", handleKeydownInModal);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("confirmationModal");
+            if (modal) {
+                modal.remove();
+            }
+
+            // Remove the keydown event listener when the modal is closed
+            document.removeEventListener("keydown", handleKeydownInModal);
+        }
+
+        function deleteData() {
+            closeModal();
+            document.getElementById("delete-article").submit();
+        }
+
+        function handleKeydownInModal(event) {
+            if (event.key === "Escape") {
+                closeModal();
+            }
+            if (event.key === "Enter") {
+                event.preventDefault(); // Prevent form submission via Enter
+                deleteData(); // Call delete function if Enter is pressed
+            }
+        }
+    </script>
 </body>
 </html>

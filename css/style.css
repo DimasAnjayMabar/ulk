@@ -15,11 +15,6 @@
 }
 
 /********** psycho education article stylings **********/
-form {
-    display: inline-flex;
-    gap: 10px;
-    align-items: center; /* Ensures buttons are vertically aligned */
-}
 
 #article-video {
     width: 20%;
@@ -155,32 +150,35 @@ form {
     transform: rotate(15deg);
 }
 
-.service-item button.btn {
-    position: absolute;
-    width: 60px;
-    bottom: -48px;
-    left: 50%;
-    margin-left: -30px;
-    opacity: 0;
+/* Flex container for buttons */
+.service-item .button-container {
+    margin-top: 15px; /* Space above buttons */
+    display: flex;
+    justify-content: center; /* Center buttons horizontally */
+    gap: 10px; /* Spacing between buttons */
 }
 
-.service-item:hover button.btn {
-    bottom: -24px;
+/* Button hover effects */
+.service-item button.btn, .service-item a.btn {
+    transition: bottom 0.5s, opacity 0.5s;
+}
+
+.service-item:hover button.btn, .service-item:hover a.btn {
+    bottom: 0;
     opacity: 1;
 }
 
-.service-item a.btn {
-    position: absolute;
-    width: 60px;
-    bottom: -48px;
-    left: 50%;
-    margin-left: -30px;
-    opacity: 0;
+/* Initially hide the button container */
+.service-item .button-container {
+    transform: translateY(20px); /* Move buttons down */
+    opacity: 0; /* Make them invisible */
+    transition: transform 0.5s, opacity 0.5s; /* Smooth transition */
 }
 
-.service-item:hover a.btn {
-    bottom: -24px;
-    opacity: 1;
+/* On hover, reveal the buttons */
+.service-item:hover .button-container {
+    transform: translateY(0); /* Move to original position */
+    opacity: 1; /* Make them visible */
 }
 
 /********** carousel stylings **********/
