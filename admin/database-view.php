@@ -10,58 +10,9 @@
 <head>
     <?php 
         require("../includes/head.php");
-        include('logout-modal.php');
     ?>
     <title>Unit Layanan Psikologi</title>
     <style>
-        form {
-            width: 100%;
-            max-width: 400px;     /* Optional: limit the form width */
-        }
-
-        .form-control:focus {
-            border-color: #ffb3c6 !important; /* Change the border color on focus */
-            box-shadow: 0 0 0 0.2rem rgba(255, 179, 198, 0.25) !important; /* Optional: add a soft glow */
-        }
-         /* Modal Styles */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-        }
-
-        .modal-content {
-            background-color: white;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%; /* Could be more or less, depending on screen size */
-            max-width: 600px;
-            border-radius: 8px;
-        }
-
-        .close {
-            color: #aaa;
-            font-size: 28px;
-            font-weight: bold;
-            position: absolute;
-            right: 10px;
-            top: 10px;
-            cursor: pointer;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
     </style>
 </head>
 
@@ -82,7 +33,7 @@
                     <div class="navbar-nav ms-auto py-0">
                         <a href="add-article.php" class="nav-item nav-link ">Insert</a>
                         <a href="database-view.php" class="nav-item nav-link active">Database</a>
-                        <a href="#" class="nav-item nav-link" onclick="openModal()">Log Out</a>
+                        <a href="#" class="nav-item nav-link" data-bs-toggle="modal" data-bs-target="#logoutModal">Log Out</a>
                     </div>
                 </div>
             </nav>
@@ -136,12 +87,12 @@
                                         </form>
 
                                         <!-- Delete button -->
-                                        <form action="../functions/delete-article.php" method="POST" id="delete-article">
-                                            <input type="hidden" name="id" value="' . $articleId . '">
-                                            <button type="submit" class="btn btn-lg btn-danger rounded-pill custom-border" style="background-color: #ffb3c6 !important; border-color: #ffb3c6 !important" onclick="showModal(event)">
-                                                <i class="bi bi-trash text" style="color: #ffffff;"></i>
-                                            </button>
-                                        </form>
+                                        <button type="button" class="btn btn-lg btn-primary rounded-pill custom-button delete-button" 
+                                            data-id="' . $articleId . '" 
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#confirmationModal">
+                                            <i class="bi bi-trash text" style="color: #ffffff;"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -153,6 +104,47 @@
         </div>
     </div>
     <!-- Article Menu End -->
+
+    <!-- Modal Start -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmationModalLabel" style="color: #522e38 !important;">Konfirmasi Penghapusan Artikel</h5>
+                </div>
+                <div class="modal-body">
+                    Apakah Anda yakin ingin menghapus artikel?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-lg btn-primary rounded-pill custom-button" data-bs-dismiss="modal">Batal</button>
+                    <form id="delete-article-modal-form" action="../functions/delete-article.php" method="POST">
+                        <input type="hidden" name="id" id="modal-article-id">
+                        <button type="submit" class="btn btn-lg btn-danger rounded-pill custom-button">Hapus</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal End -->
+
+    <!-- Modal Start -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel" style="color: #522e38 !important;">Konfirmasi Keluar</h5>
+                </div>
+                <div class="modal-body">
+                    Apakah Anda yakin ingin keluar?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-lg btn-primary rounded-pill custom-button" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-lg btn-primary rounded-pill custom-button" onclick="handleLogout()">Keluar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal End -->
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light mt-5 py-5" style="background-color: #522e38 !important;">
@@ -173,59 +165,59 @@
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- Script for Deleting Article -->
     <script>
-        function showModal(event) {
-            event.preventDefault();
-            const modalHTML = `
-                <div id="confirmationModal" class="modal" style="display: flex;">
-                    <div class="modal-content">
-                        <span class="close" onclick="closeModal()">&times;</span>
-                        <h2>Apakah Anda yakin ingin menghapus?</h2>
-                        <div class="modal-footer">
-                            <button class="btn btn-lg btn-primary rounded-pill custom-button" onclick="closeModal()">Kembali</button>
-                            <button class="btn btn-lg btn-primary rounded-pill custom-button" onclick="deleteData()">Hapus</button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            // Append the modal to the body
-            document.body.insertAdjacentHTML('beforeend', modalHTML);
-
-            document.addEventListener("keydown", handleKeydownInModal);
-            document.addEventListener("keydown", handleKeydownInModal2);
-        }
-
-        function closeModal() {
-            const modal = document.getElementById("confirmationModal");
-            if (modal) {
-                modal.remove();
-            }
-
-            // Remove the keydown event listener when the modal is closed
-            document.removeEventListener("keydown", handleKeydownInModal);
-        }
-
-        function deleteData() {
-            closeModal();
-            document.getElementById("delete-article").submit();
-        }
-
-        function handleKeydownInModal(event) {
-            if (event.key === "Escape") {
-                closeModal();
-            }
-        }
-
-        function handleKeydownInModal2(event){
+        // Handle keydown event on the entire document
+        document.addEventListener("keydown", function (event) {
             if (event.key === "Enter") {
-                event.preventDefault(); // Prevent form submission via Enter
-                deleteData(); // Call delete function if Enter is pressed
+                event.preventDefault(); // Prevent default Enter key action
+                
+                // Check if the modal is currently shown
+                const modalElement = document.getElementById("confirmationModal");
+                const isModalOpen = modalElement.classList.contains("show");
+
+                if (!isModalOpen) {
+                    // Validate the form and show the modal if valid
+                    if (validateForm()) {
+                        const modal = new bootstrap.Modal(modalElement);
+                        modal.show();
+                    }
+                } else {
+                    // If modal is open and Enter is pressed, submit the form
+                    document.getElementById("delete-article-modal-form").submit();
+                }
+            } else if (event.key === "Escape") {
+                // Close the modal when Esc key is pressed
+                const modalElement = document.getElementById("confirmationModal");
+                const modal = bootstrap.Modal.getInstance(modalElement);
+                if (modal) {
+                    modal.hide();
+                }
             }
-        }
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const deleteButtons = document.querySelectorAll('.delete-button');
+            
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const articleId = this.getAttribute('data-id'); // Get article ID
+                    const modalInput = document.getElementById('modal-article-id'); // Find hidden input
+                    modalInput.value = articleId; // Set the value of the hidden input
+                });
+            });
+        });
+    </script>
+
+    <script>
+        function handleLogout() {
+        // Redirect to logout logic or clear session storage
+        window.location.href = '../functions/logout.php'; // Adjust the path as necessary
+    }
     </script>
 </body>
 </html>

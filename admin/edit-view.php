@@ -29,7 +29,8 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
                         <a href="home-page.php" class="nav-item nav-link ">Insert</a>
-                        <a href="database-view.php" class="nav-item nav-link active">Database</a>                    </div>
+                        <a href="database-view.php" class="nav-item nav-link active">Database</a>                   
+                    </div>
                 </div>
             </nav>
         </div>

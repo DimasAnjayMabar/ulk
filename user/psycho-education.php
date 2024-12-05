@@ -58,20 +58,25 @@
                         
                         echo '
                         <div class="col-lg-4 col-md-6">
-                            <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                                <div>
-                                    <img src="' . $picture . '" alt="Service Icon" class="rounded card-image" style="width: 150px; height: 130px;">
+                                <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                                    <div>
+                                        <img src="' . $picture . '" alt="Service Icon" class="rounded card-image" style="width: 150px; height: 130px;">
+                                    </div>
+                                    <h4 class="mb-3 card-title" style="color: #522e38 !important; margin-top: 5%;">' . $title . '</h4>
+                                    <p class="m-0 card-content" style="color: #522e38 !important; font-weight: bold;">' . $contentPreview . '</p>
+                                    
+                                    <!-- Button container -->
+                                    <div class="button-container">
+                                        <!-- View button -->
+                                        <form action="detail-article.php" method="POST">
+                                            <input type="hidden" name="id" value="' . $articleId . '">
+                                            <button type="submit" class="btn btn-lg btn-primary rounded-pill" style="background-color: #ffb3c6 !important; border-color: #ffb3c6 !important">
+                                                <i class="bi bi-arrow-right text" style="color: #ffffff"></i>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
-                                <h4 class="mb-3 card-title" style="color: #522e38 !important; margin-top: 5%;">' . $title . '</h4>
-                                <p class="m-0 card-content" style="color: #522e38 !important; font-weight: bold;">' . $contentPreview . '</p>
-                                <form action="detail-article.php" method="POST" style="display:inline;">
-                                    <input type="hidden" name="id" value="' . $articleId . '">
-                                    <button type="submit" class="btn btn-lg btn-primary rounded-pill custom-button">
-                                        <i class="bi bi-arrow-right text" style="color: #522e38 !important;"></i>
-                                    </button>
-                                </form>
                             </div>
-                        </div>
                         ';
                     }
                 }

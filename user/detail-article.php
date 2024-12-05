@@ -6,7 +6,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php require("../includes/head.php"); ?>
+    <?php 
+    require("../includes/head.php"); 
+    require("../functions/separate-paragraph.php");
+    ?>
     <title>Unit Layanan Psikologi</title>
 </head>
 <body>
@@ -49,7 +52,12 @@
             <!-- If no video link, display image -->
             <img src="<?php echo $article['photo_path']; ?>" class="rounded" alt="Article Image" id="article-image">
         <?php endif; ?>
-        <p style="color: #522e38 !important; font-weight: bold; margin-top: 2%;"><?php echo $article['content']; ?></p>
+        <div class="article-content">
+            <?php 
+            // Assuming $article['content'] contains the article text
+            echo '<p class="paragraph-separator">' . splitParagraphs($article['content']) . '</p>';
+            ?>
+        </div>
     </div>
     <!-- Article End -->
 
@@ -132,6 +140,6 @@
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>\
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

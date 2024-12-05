@@ -75,7 +75,7 @@
 
             <!-- Submit button -->
             <div class="text-center" style="margin: 5%">
-                <a class="btn btn-lg btn-primary rounded-pill custom-button" id="popupAd" href="home-page.php" onclick="validateForm(event)">Login</a>
+                <a class="btn btn-lg btn-primary rounded-pill custom-button" href="home-page.php" onclick="validateForm(event)">Login</a>
             </div>
 
             <!-- Register buttons -->

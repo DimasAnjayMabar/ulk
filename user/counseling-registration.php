@@ -45,7 +45,7 @@
             <br>
             <p class="card-text text-light" style="font-weight: bolder; text-shadow: 2px 2px 5px rgba(0, 0, 0, 1); color: #ffe5ec !important;">Tekan tombol ini untuk registrasi konseling</p>
             <br>
-            <a class="btn btn-lg btn-primary rounded-pill custom-button" id="popupAd" href="https://bit.ly/daftarkonselingULKUKWMS">Hubungi Kami</a>
+            <a class="btn btn-lg btn-primary rounded-pill custom-button" href="https://bit.ly/daftarkonselingULKUKWMS">Hubungi Kami</a>
         </div>
     </div>
     <!-- Registration End -->
@@ -60,7 +60,7 @@
             <br>
             <p class="card-text text-light" style="font-weight: bolder; text-shadow: 2px 2px 5px rgba(0, 0, 0, 1); color: #ffe5ec !important;">Tekan tombol ini untuk survey kepuasan konseling</p>
             <br>
-            <a class="btn btn-lg btn-primary rounded-pill custom-button" id="popupAd" href="https://bit.ly/evaluasi_konselor">Isi Survey</a>
+            <a class="btn btn-lg btn-primary rounded-pill custom-button" href="https://bit.ly/evaluasi_konselor">Isi Survey</a>
         </div>
     </div>
     <!-- Registration End -->

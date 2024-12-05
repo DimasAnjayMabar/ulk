@@ -5,24 +5,6 @@
         require("../includes/head.php");
     ?>
     <title>Unit Layanan Psikologi</title>
-    <style>
-        form {
-            width: 100%;
-            max-width: 400px;     /* Optional: limit the form width */
-        }
-
-        .form-control:focus {
-            border-color: #ffb3c6 !important; /* Change the border color on focus */
-            box-shadow: 0 0 0 0.2rem rgba(255, 179, 198, 0.25) !important; /* Optional: add a soft glow */
-        }
-        
-        /* Error message */
-        .error {
-            color: red;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-    </style>
 </head>
 <body>
     <!-- Navbar Start -->
@@ -41,7 +23,7 @@
                     <div class="navbar-nav ms-auto py-0">
                         <a href="add-article.php" class="nav-item nav-link active">Insert</a>
                         <a href="database-view.php" class="nav-item nav-link">Database</a>
-                        <a href="#" class="nav-item nav-link" data-bs-toggle="modal" data-bs-target="#logoutModal">Log Out</a>
+                        <a href="#" class="nav-item nav-link" onclick="openModal()">Log Out</a>
                     </div>
                 </div>
             </nav>
@@ -56,7 +38,7 @@
     <div class="card mb-3 mx-auto p-3 bg-light d-flex justify-content-center align-items-center" style="max-width: 800px; min-height: 400px; border: 3px solid #d3d3d3; border-radius: 10px; overflow: hidden;">
         <div class="card-body text-center">
             <h6 class="card-subtitle mb-2 text-body-secondary" style="color: #522e38 !important;">Tambah Artikel Baru</h6>
-            <form id="registrationForm" method="POST" action="../functions/insert-article.php" enctype="multipart/form-data">
+            <form id="registrationForm" method="POST" action="../functions/insert-article.php">
                 <div class="form-outline mb-4" style="margin-top:5%; color: #522e38 !important;">
                     <select id="authorDropdown" name="id_author" class="form-control" required>
                         <option value="" disabled selected>Pilih Penulis</option>
@@ -74,61 +56,21 @@
                     <label class="form-label" for="form2Example1_content">Konten</label>
                     <div id="contentError" class="error"></div> <!-- Error message container -->
                 </div>
-                <div class="form-outline mb-4" style="margin-top:5%; color: #522e38 !important;">
-                    <input type="file" id="form2Example1_photo" name="photo" class="form-control" accept="image/*" required />
-                    <label class="form-label" for="form2Example1_photo">Upload Foto</label>
-                    <div id="photoError" class="error"></div> <!-- Error message container -->
+                <div data-mdb-input-init class="form-outline mb-4" style="margin-top:5%; color: #522e38 !important;">
+                    <input type="photo" id="form2Example1_photo" name="photo_path" class="form-control" required />
+                    <label class="form-label" for="form2Example1_photo">Directory Foto</label>
+                    <div id="directoryError" class="error"></div> <!-- Error message container -->
                 </div>
                 <div data-mdb-input-init class="form-outline mb-4" style="margin-top:5%; color: #522e38 !important;">
                     <input type="video" id="form2Example1_video" name="video_link" class="form-control" required />
                     <label class="form-label" for="form2Example1_video">Link Video</label>
                     <div id="linkError" class="error"></div> <!-- Error message container -->
                 </div>
-                <button type="button" class="btn btn-lg btn-primary rounded-pill custom-button" data-bs-toggle="modal" data-bs-target="#confirmationModal">
-                    Tambah
-                </button>
+                <a type="button" class="btn btn-lg btn-primary rounded-pill custom-button" onclick="showModal()">Tambah</a>
             </form>
         </div>
     </div>
     <!-- Add Article End -->
-
-    <!-- Modal Start -->
-    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="confirmationModalLabel" style="color: #522e38 !important;">Konfirmasi Tambah Artikel</h5>
-        </div>
-        <div class="modal-body">
-            Apakah Anda yakin ingin menyimpan artikel baru?
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-lg btn-primary rounded-pill custom-button" data-bs-dismiss="modal">Batal</button>
-            <button type="button" class="btn btn-lg btn-primary rounded-pill custom-button" data-bs-dismiss="modal" onclick="handleSave()">Simpan</button>
-        </div>
-        </div>
-    </div>
-    </div>
-    <!-- Modal End -->
-
-    <!-- Modal Start -->
-    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="logoutModalLabel" style="color: #522e38 !important;">Konfirmasi Keluar</h5>
-                </div>
-                <div class="modal-body">
-                    Apakah Anda yakin ingin keluar?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-lg btn-primary rounded-pill custom-button" data-bs-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-lg btn-primary rounded-pill custom-button" onclick="handleLogout()">Keluar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal End -->
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light mt-5 py-5" style="background-color: #522e38 !important;">
@@ -197,71 +139,116 @@
 
     <!-- Script for Inserting Added Article -->
     <script>
+        // Trigger the login form submission when Enter is pressed
+        document.getElementById("form2Example1_title").addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();  // Prevent form submission
+                validateForm(event);      // Trigger form validation and submission
+            }
+        });
+
+        document.getElementById("form2Example1_content").addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();  // Prevent form submission
+                validateForm(event);      // Trigger form validation and submission
+            }
+        });
+
+        document.getElementById("form2Example1_photo").addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();  // Prevent form submission
+                validateForm(event);      // Trigger form validation and submission
+            }
+        });
+
+        document.getElementById("form2Example1_video").addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();  // Prevent form submission
+                validateForm(event);      // Trigger form validation and submission
+            }
+        });
+
+        // Show the modal
+        function showModal() {
+            // Create the modal structure as innerHTML
+            const modalHTML = `
+                <div id="confirmationModal" class="modal" style="display: flex;">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeModal()">&times;</span>
+                        <h2>Apakah Anda yakin ingin menyimpan?</h2>
+                        <div class="modal-footer">
+                            <button class="btn btn-lg btn-primary rounded-pill custom-button" onclick="closeModal()">Kembali</button>
+                            <button class="btn btn-lg btn-primary rounded-pill custom-button" onclick="saveData()">Simpan</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Append the modal to the body
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+            // Add event listener for keydown to handle Enter and Escape keys
+            document.addEventListener("keydown", handleKeydownInModal);
+        }
+
+        // Close the modal and remove it from the DOM
+        function closeModal() {
+            const modal = document.getElementById("confirmationModal");
+            if (modal) {
+                modal.remove();
+            }
+
+            // Remove the keydown event listener when the modal is closed
+            document.removeEventListener("keydown", handleKeydownInModal);
+        }
+
+        // Save action
+        function saveData() {
+            closeModal(); // Close the modal after saving
+            // Submit the form
+            document.getElementById("registrationForm").submit();
+        }
+
+        // Handle keydown events for Enter and Escape keys
+        function handleKeydownInModal(event) {
+            if (event.key === "Enter") {
+                // Prevent default action to avoid conflicts
+                event.preventDefault();
+                saveData();
+            } else if (event.key === "Escape") {
+                event.preventDefault();
+                closeModal();
+            }
+        }
+
         // Form validation function
-        function validateForm() {
+        function validateForm(event) {
+            event.preventDefault(); // Prevent form submission
+
             // Clear previous error messages
             document.getElementById("titleError").textContent = '';
             document.getElementById("contentError").textContent = '';
-
+        
+            // Check if all fields are filled
             let isValid = true;
 
             // Validate title
-            if (document.getElementById("form2Example1_title").value.trim() === '') {
+            if (document.getElementById("form2Example1_title").value === '') {
                 document.getElementById("titleError").textContent = 'Judul tidak boleh kosong';
                 isValid = false;
             }
 
             // Validate content
-            if (document.getElementById("form2Example1_content").value.trim() === '') {
+            if (document.getElementById("form2Example1_content").value === '') {
                 document.getElementById("contentError").textContent = 'Konten tidak boleh kosong';
                 isValid = false;
             }
 
-            return isValid;
-        }
-
-        // Handle keydown event on the entire document
-        document.addEventListener("keydown", function (event) {
-            if (event.key === "Enter") {
-                event.preventDefault(); // Prevent default Enter key action
-                
-                // Check if the modal is currently shown
-                const modalElement = document.getElementById("confirmationModal");
-                const isModalOpen = modalElement.classList.contains("show");
-
-                if (!isModalOpen) {
-                    // Validate the form and show the modal if valid
-                    if (validateForm()) {
-                        const modal = new bootstrap.Modal(modalElement);
-                        modal.show();
-                    }
-                } else {
-                    // If modal is open and Enter is pressed, submit the form
-                    document.getElementById("registrationForm").submit();
-                }
-            } else if (event.key === "Escape") {
-                // Close the modal when Esc key is pressed
-                const modalElement = document.getElementById("confirmationModal");
-                const modal = bootstrap.Modal.getInstance(modalElement);
-                if (modal) {
-                    modal.hide();
-                }
+            // If all fields are valid, show the modal
+            if (isValid) {
+                showModal();
             }
-        });
-    </script>
-
-    <script>
-        function handleLogout() {
-        // Redirect to logout logic or clear session storage
-        window.location.href = '../functions/logout.php'; // Adjust the path as necessary
-    }
-    </script>
-
-    <script>
-        function handleSave() {
-        // Redirect to logout logic or clear session storage
-        document.getElementById("registrationForm").submit();
-    }
+        }
     </script>
 </body>
 </html>
