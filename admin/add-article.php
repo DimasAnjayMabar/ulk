@@ -259,7 +259,6 @@
 
     <script>
         function handleSave() {
-        // Redirect to logout logic or clear session storage
         document.getElementById("registrationForm").submit();
     }
     </script>

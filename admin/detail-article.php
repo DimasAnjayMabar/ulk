@@ -39,7 +39,7 @@
     <!-- Article Start -->
     <div class="text-center mx-auto mb-5" style="max-width: 500px;">
         <h1 class="display-4 border-bottom border-5 custom-border2 text-uppercase" style="color: #522e38 !important;"><?php echo $article['title']; ?></h1>
-        <p class="m-0" style="color: #522e38 !important;"><?php echo $article['date']; ?> / <?php echo $article['nama_author']; ?></p>
+        <p class="m-0" style="color: #522e38 !important;"><?php echo $article['date']; ?> / <?php echo !empty($article['nama_author']) ? $article['nama_author'] : 'anonymous'; ?></p>
     </div>
     <div class="card bg-light p-4" style="background-color: #ffe5ec !important; width: 80%; margin: auto;">
         <?php if (!empty($article['video_link'])): ?>
@@ -91,42 +91,10 @@
     <div class="container-fluid bg-dark text-light mt-5 py-5" style="background-color: #522e38 !important;">
         <div class="container py-5">
             <div class="row g-5">
-                <!-- Get In Touch Section -->
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4 custom-border" style="color: #ffb3c6 !important;">Hubungi</h4>
-                    <p class="mb-4">Hubungi atau temui kami di sini</p>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3" style="color: #ffb3c6 !important;"></i>Surabaya, Jawa Timur, Indonesia</p>
-                    <p class="mb-2"><i class="fa fa-envelope text-primary me-3" style="color: #ffb3c6 !important;"></i>c14230127@john.petra.ac.id</p>
-                    <p class="mb-0"><i class="fa fa-phone-alt text-primary me-3" style="color: #ffb3c6 !important;"></i>0895340299650</p>
-                </div>
-
-                <!-- Follow Us Section -->
-                <div class="col-lg-3 col-md-6 text-start">
-                    <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4 custom-border" style="color: #ffb3c6 !important;">Ikuti Kami</h4>
-                    <p class="mb-4">Ikuti kami di sosial media</p>
-                    <div class="d-flex">
-                        <a class="btn btn-lg btn-primary rounded-circle me-2 custom-button" href=""><i class="fab fa-instagram"></i></a>
-                        <a class="btn btn-lg btn-primary rounded-circle me-2 custom-button" href=""><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-
-                <!-- Survey Section -->
-                <div class="col-lg-3 col-md-6 text-start">
-                    <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4 custom-border" style="color: #ffb3c6 !important;">Survey</h4>
-                    <p class="mb-4">Klik tombol di bawah ini untuk melakukan survey. Kepuasan pengguna sangat berarti untuk kami</p>
-                    <div class="d-flex">
-                        <a class="btn btn-lg btn-primary rounded-circle me-2 custom-button" href=""><i class="fa-solid fa-square-poll-vertical"></i></a>
-                    </div>
-                </div>
-
-                <!-- Bug Report Section -->
-                <div class="col-lg-3 col-md-6 text-start">
-                    <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4 custom-border" style="color: #ffb3c6 !important;">Lapor Bug</h4>
-                    <p class="mb-4">Klik tombol di bawah ini untuk melaporkan bug dalam website</p>
-                    <div class="d-flex">
-                        <a class="btn btn-lg btn-primary rounded-circle me-2 custom-button" href=""><i class="fa-solid fa-bug"></i></a>
-                    </div>
-                </div>
+            <!-- Get In Touch Section -->
+            <div class="col-lg-3 col-md-6">
+                <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4 custom-border" style="color: #ffb3c6 !important;">Catatan</h4>
+                <p class="mb-4">Ini adalah live view dari detail artikel. View di sini akan sama dengan detail artikel di user</p>
             </div>
         </div>
     </div>

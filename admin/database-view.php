@@ -79,7 +79,7 @@
                                         </form>
 
                                         <!-- Edit button -->
-                                        <form action="edit-article.php" method="POST">
+                                        <form action="edit-view.php" method="POST">
                                             <input type="hidden" name="id" value="' . $articleId . '">
                                             <button type="submit" class="btn btn-lg btn-warning rounded-pill custom-border" style="background-color: #ffb3c6 !important; border-color: #ffb3c6 !important">
                                                 <i class="bi bi-pencil text" style="color: #ffffff"></i>
@@ -153,7 +153,7 @@
             <!-- Get In Touch Section -->
             <div class="col-lg-3 col-md-6">
                 <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4 custom-border" style="color: #ffb3c6 !important;">Catatan</h4>
-                <p class="mb-4">Ini adalah isi artikel yang sudah ditambahkan dalam database. Perhatian!, satu kali klik akan langsung terproses pada program</p>
+                <p class="mb-4">Ini adalah isi artikel yang sudah ditambahkan dalam database</p>
             </div>
         </div>
     </div>

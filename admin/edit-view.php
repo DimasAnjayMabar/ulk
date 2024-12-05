@@ -8,10 +8,27 @@
 <head>
     <?php 
         require("../includes/head.php");
-        include('logout-modal.php');
         require("../functions/separate-paragraph.php")
     ?>
     <title>Unit Layanan Psikologi</title>
+    <style>
+        form {
+            width: 100%;
+            max-width: 400px;     /* Optional: limit the form width */
+        }
+
+        .form-control:focus {
+            border-color: #ffb3c6 !important; /* Change the border color on focus */
+            box-shadow: 0 0 0 0.2rem rgba(255, 179, 198, 0.25) !important; /* Optional: add a soft glow */
+        }
+        
+        /* Error message */
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar Start -->
@@ -37,52 +54,88 @@
     </div>
     <!-- Navbar End -->
 
-    <!-- Article Start -->
+    <!-- Edit Start -->
     <div class="text-center mx-auto mb-5" style="max-width: 500px;">
-        <h1 class="display-4 border-bottom border-5 custom-border2 text-uppercase" style="color: #522e38 !important;"><?php echo $article['title']; ?></h1>
-        <p class="m-0" style="color: #522e38 !important;"><?php echo $article['date']; ?> / <?php echo $article['nama_author']; ?></p>
+        <h1 class="display-4 border-bottom border-5 custom-border2" style="color: #522e38 !important;">EDIT ARTIKEL</h1>
     </div>
     <div class="card bg-light p-4" style="background-color: #ffe5ec !important; width: 80%; margin: auto;">
-        <?php if (!empty($article['video_link'])): ?>
-            <!-- If video link exists, display iframe -->
-            <iframe width="560" height="315" src="<?php echo $article['video_link']; ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen id="article-video" style="border-radius: 15px;"></iframe>
-            <p style="color: #522e38 !important; margin-top: 2%;">Memiliki masalah dengan video?. Klik <a href="<?php echo $article['video_link']; ?>">di sini</a></p>
-        <?php else: ?>
-            <!-- If no video link, display image -->
-            <img src="<?php echo $article['photo_path']; ?>" class="rounded" alt="Article Image" id="article-image">
-        <?php endif; ?>
-        <div class="article-content">
-            <?php 
-            // Assuming $article['content'] contains the article text
-            echo '<p class="paragraph-separator">' . splitParagraphs($article['content']) . '</p>';
-            ?>
+        <form id="update" action="../functions/update-article.php" method="POST" enctype="multipart/form-data">
+            <!-- Hidden field to store article ID -->
+            <input type="hidden" name="id" value="<?php echo $article['id']; ?>">
+
+            <div class="mb-3">
+                <label for="title" class="form-label" style="color: #522e38 !important;">Author</label>
+                    <select id="authorDropdown" name="id_author" class="form-control" required>
+                        <option value="" disabled selected>Pilih Penulis</option>
+                        <!-- Options will be dynamically populated -->
+                    </select>         
+            </div>
+
+            <!-- Editable Title -->
+            <div class="mb-3">
+                <label for="title" class="form-label" style="color: #522e38 !important;">Title</label>
+                <input type="text" class="form-control" id="title" name="title" value="<?php echo htmlspecialchars($article['title']); ?>" required>
+            </div>
+            <div id="titleError" class="error"></div> <!-- Error message container -->
+
+            <!-- Date Picker for Date -->
+            <div class="mb-3">
+                <label for="date" class="form-label" style="color: #522e38 !important;">Date</label>
+                <input type="date" class="form-control" id="date" name="date" value="<?php echo $article['date']; ?>" required>
+            </div>
+
+            <!-- Editable Video Link (optional) -->
+            <div class="mb-3">
+                <label for="video_link" class="form-label" style="color: #522e38 !important;">Video Link (Optional)</label>
+                <input type="text" class="form-control" id="video_link" name="video_link" value="<?php echo htmlspecialchars($article['video_link']); ?>">
+            </div>
+
+            <!-- Editable Content -->
+            <div class="mb-3">
+                <label for="content" class="form-label" style="color: #522e38 !important;">Content</label>
+                <textarea class="form-control" id="content" name="content" rows="5" required><?php echo htmlspecialchars($article['content']); ?></textarea>
+            </div>
+            <div id="contentError" class="error"></div> <!-- Error message container -->
+
+            <!-- Image Upload -->
+            <div class="mb-3">
+                <label for="image" class="form-label" style="color: #522e38 !important;">Upload New Image (Optional)</label>
+                <input type="file" class="form-control" id="image" name="image">
+            </div>
+
+            <!-- Submit Button -->
+            <button type="button" class="btn btn-lg btn-primary rounded-pill custom-button" data-bs-toggle="modal" data-bs-target="#confirmationModal">
+                Simpan
+            </button>
+        </form>
+    </div>
+    <!-- Edit End -->
+
+
+    <!-- Modal Start -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="confirmationModalLabel" style="color: #522e38 !important;">Konfirmasi Tambah Artikel</h5>
+        </div>
+        <div class="modal-body">
+            Apakah Anda yakin ingin menyimpan perubahan artikel?
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-lg btn-primary rounded-pill custom-button" data-bs-dismiss="modal">Batal</button>
+            <button type="button" class="btn btn-lg btn-primary rounded-pill custom-button" data-bs-dismiss="modal" onclick="handleSave()">Simpan</button>
+        </div>
         </div>
     </div>
-    <!-- Article End -->
+    </div>
+    <!-- Modal End -->
 
     <!-- Navigator Start -->
     <div class="container" style="margin-top: 5%;">
         <div class="row justify-content-between align-items-center mb-3">
             <div class="col-auto">
                 <a class="btn btn-lg btn-primary rounded-pill custom-button" href="database-view.php">Menu Utama</a>
-            </div>
-            <div class="col-auto">
-                <?php if (isset($prevId)) { ?>
-                    <form action="detail-article.php" method="POST" style="display:inline;">
-                        <input type="hidden" name="id" value="<?php echo $prevId; ?>">
-                        <button type="submit" class="btn btn-lg btn-primary rounded-pill custom-button">
-                            <i class="bi bi-arrow-left text" style="color: #522e38 !important;"></i>
-                        </button>
-                    </form>
-                <?php } ?>
-                <?php if (isset($nextId)) { ?>
-                    <form action="detail-article.php" method="POST" style="display:inline;">
-                        <input type="hidden" name="id" value="<?php echo $nextId; ?>">
-                        <button type="submit" class="btn btn-lg btn-primary rounded-pill custom-button">
-                            <i class="bi bi-arrow-right text" style="color: #522e38 !important;"></i>
-                        </button>
-                    </form>
-                <?php } ?>
             </div>
         </div>
     </div>
@@ -92,47 +145,14 @@
     <div class="container-fluid bg-dark text-light mt-5 py-5" style="background-color: #522e38 !important;">
         <div class="container py-5">
             <div class="row g-5">
-                <!-- Get In Touch Section -->
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4 custom-border" style="color: #ffb3c6 !important;">Hubungi</h4>
-                    <p class="mb-4">Hubungi atau temui kami di sini</p>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3" style="color: #ffb3c6 !important;"></i>Surabaya, Jawa Timur, Indonesia</p>
-                    <p class="mb-2"><i class="fa fa-envelope text-primary me-3" style="color: #ffb3c6 !important;"></i>c14230127@john.petra.ac.id</p>
-                    <p class="mb-0"><i class="fa fa-phone-alt text-primary me-3" style="color: #ffb3c6 !important;"></i>0895340299650</p>
-                </div>
-
-                <!-- Follow Us Section -->
-                <div class="col-lg-3 col-md-6 text-start">
-                    <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4 custom-border" style="color: #ffb3c6 !important;">Ikuti Kami</h4>
-                    <p class="mb-4">Ikuti kami di sosial media</p>
-                    <div class="d-flex">
-                        <a class="btn btn-lg btn-primary rounded-circle me-2 custom-button" href=""><i class="fab fa-instagram"></i></a>
-                        <a class="btn btn-lg btn-primary rounded-circle me-2 custom-button" href=""><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-
-                <!-- Survey Section -->
-                <div class="col-lg-3 col-md-6 text-start">
-                    <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4 custom-border" style="color: #ffb3c6 !important;">Survey</h4>
-                    <p class="mb-4">Klik tombol di bawah ini untuk melakukan survey. Kepuasan pengguna sangat berarti untuk kami</p>
-                    <div class="d-flex">
-                        <a class="btn btn-lg btn-primary rounded-circle me-2 custom-button" href=""><i class="fa-solid fa-square-poll-vertical"></i></a>
-                    </div>
-                </div>
-
-                <!-- Bug Report Section -->
-                <div class="col-lg-3 col-md-6 text-start">
-                    <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4 custom-border" style="color: #ffb3c6 !important;">Lapor Bug</h4>
-                    <p class="mb-4">Klik tombol di bawah ini untuk melaporkan bug dalam website</p>
-                    <div class="d-flex">
-                        <a class="btn btn-lg btn-primary rounded-circle me-2 custom-button" href=""><i class="fa-solid fa-bug"></i></a>
-                    </div>
-                </div>
+            <!-- Get In Touch Section -->
+            <div class="col-lg-3 col-md-6">
+                <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4 custom-border" style="color: #ffb3c6 !important;">Catatan</h4>
+                <p class="mb-4">Ini adalah tempat pengeditan artikel. Requirement artikel adalah title dan content, lainnya opsional.</p>
             </div>
         </div>
     </div>
     <!-- Footer End -->
-
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top custom-button" id="backOnTop"><i class="bi bi-arrow-up"></i></a>
@@ -140,5 +160,110 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Script for Fetching Author -->
+        <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Fetch authors on page load
+            fetchAuthors();
+        });
+
+        function fetchAuthors() {
+            // The endpoint that returns authors in JSON format
+            const url = '../functions/fetch-author.php'; // Replace with the actual path to your PHP script
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.error) {
+                        console.error(data.error);
+                        return;
+                    }
+                    populateAuthorsDropdown(data);
+                })
+                .catch(error => {
+                    console.error('Error fetching authors:', error);
+                });
+        }
+
+        function populateAuthorsDropdown(authors) {
+            const dropdown = document.getElementById("authorDropdown");
+            // Clear existing options except the placeholder
+            dropdown.innerHTML = '<option value="" disabled selected>Pilih Penulis</option>';
+
+            // Populate dropdown with author options
+            authors.forEach(author => {
+                const option = document.createElement("option");
+                option.value = author.id_author; // Use `id_author` as the option value
+                option.textContent = author.nama_author; // Display `nama_author` in the dropdown
+                dropdown.appendChild(option);
+            });
+        }
+    </script>
+
+    <script>
+        // Form validation function
+        function validateForm() {
+            // Clear previous error messages
+            document.getElementById("titleError").textContent = '';
+            document.getElementById("contentError").textContent = '';
+
+            let isValid = true;
+
+            // Validate title
+            if (document.getElementById("title").value.trim() === '') {
+                document.getElementById("titleError").textContent = 'Judul tidak boleh kosong';
+                isValid = false;
+            }
+
+            // Validate content
+            if (document.getElementById("content").value.trim() === '') {
+                document.getElementById("contentError").textContent = 'Konten tidak boleh kosong';
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        // Handle keydown event on the entire document
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault(); // Prevent default Enter key action
+                
+                // Check if the modal is currently shown
+                const modalElement = document.getElementById("confirmationModal");
+                const isModalOpen = modalElement.classList.contains("show");
+
+                if (!isModalOpen) {
+                    // Validate the form and show the modal if valid
+                    if (validateForm()) {
+                        const modal = new bootstrap.Modal(modalElement);
+                        modal.show();
+                    }
+                } else {
+                    // If modal is open and Enter is pressed, submit the form
+                    document.getElementById("update").submit();
+                }
+            } else if (event.key === "Escape") {
+                // Close the modal when Esc key is pressed
+                const modalElement = document.getElementById("confirmationModal");
+                const modal = bootstrap.Modal.getInstance(modalElement);
+                if (modal) {
+                    modal.hide();
+                }
+            }
+        });
+    </script>
+
+    <script>
+        function handleSave() {
+        document.getElementById("update").submit();
+    }
+    </script>
 </body>
 </html>

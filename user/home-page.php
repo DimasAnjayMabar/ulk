@@ -47,14 +47,13 @@
     </div>
     <!-- Hero End -->
 
-
     <!-- About Start -->
     <div class="container-fluid py-5">
         <div class="container">
             <div class="row gx-5">
                 <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100 rounded" src="../assets/images/website_photo/team-2.jpg" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100 rounded" src="../assets/images/website_photo/about us.png" style="object-fit: cover;">
                     </div>
                 </div>
                 <div class="col-lg-7">
@@ -115,7 +114,7 @@
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center mt-4">
+        <!-- <div class="row justify-content-center mt-4">
             <div class="col-lg-7 mt-4">
                 <div class="ratio ratio-16x9" >
                     <iframe src="https://www.youtube.com/embed/vpWpEKXoS80" 
@@ -126,11 +125,9 @@
                 <p style="color: #522e38 !important; margin-top: 2%; text-align: center;">Got problem with the video? Visit this <a href="https://www.youtube.com/embed/vpWpEKXoS80">link</a>
                 </p>
             </div>
-        </div>
+        </div> -->
     </div>
     <!-- Vision and Mission End -->
-
-
 
     <!-- Services Start -->
     <div class="container-fluid py-5">
@@ -147,9 +144,11 @@
                         </div>
                         <h4 class="mb-3" style="color: #522e38 !important;">Pemeriksaan Kesehatan Mental</h4>
                         <p class="m-0">Kenali kondisi mental Anda saat ini dengan para ahli kami yang tersedia</p>
-                        <a class="btn btn-lg btn-primary rounded-pill custom-button" href="self-report.php">
-                            <i class="bi bi-arrow-right text" style="color: #522e38 !important;"></i>
-                        </a>
+                        <div class="button-container">
+                                <button class="btn btn-lg btn-primary rounded-pill" style="background-color: #ffb3c6 !important; border-color: #ffb3c6 !important" id="1" onclick="handleDirect1()">
+                                    <i class="bi bi-arrow-right text" style="color: #ffffff"></i>
+                                </button>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
@@ -159,9 +158,11 @@
                         </div>
                         <h4 class="mb-3" style="color: #522e38 !important;">Registrasi Konseling</h4>
                         <p class="m-0">Anda tidak pernah sendirian <br> Selalu ada cara untuk membantu Anda</p>
-                        <a class="btn btn-lg btn-primary rounded-pill custom-button" href="counseling-registration.php">
-                            <i class="bi bi-arrow-right" style="color: #522e38 !important;"></i>
-                        </a>
+                        <div class="button-container">
+                                <button class="btn btn-lg btn-primary rounded-pill" style="background-color: #ffb3c6 !important; border-color: #ffb3c6 !important" id="2" onclick="handleDirect2()">
+                                    <i class="bi bi-arrow-right text" style="color: #ffffff"></i>
+                                </button>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
@@ -171,9 +172,11 @@
                         </div>
                         <h4 class="mb-3" style="color: #522e38 !important;">Psiko Edukasi</h4>
                         <p class="m-0">Pendidikan bagi Anda untuk memahami diri sendiri</p>
-                        <a class="btn btn-lg btn-primary rounded-pill custom-button" href="psycho-education.php">
-                            <i class="bi bi-arrow-right" style="color: #522e38 !important;"></i>
-                        </a>
+                        <div class="button-container">
+                                <button class="btn btn-lg btn-primary rounded-pill" style="background-color: #ffb3c6 !important; border-color: #ffb3c6 !important" id="3" onclick="handleDirect3()">
+                                    <i class="bi bi-arrow-right text" style="color: #ffffff"></i>
+                                </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -232,5 +235,24 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        function handleDirect1() {
+        window.location.href = 'self-report.php';
+    }
+    </script>
+
+    <script>
+        function handleDirect2() {
+        window.location.href = 'counseling-registration.php';
+
+    }
+    </script>
+
+    <script>
+        function handleDirect3() {
+        window.location.href = 'psycho-education.php';
+    }
+    </script>
 </body>
 </html>
