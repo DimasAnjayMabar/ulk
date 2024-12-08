@@ -66,21 +66,9 @@
                 <div id="passwordError" class="error"></div> <!-- Error message for password -->
             </div>
 
-            <!-- 2 column grid layout for inline styling -->
-            <div class="text-center">
-                <div class="col">
-                    <a href="#!" style="color: #ffb3c6 !important;" class="hover-effect">Forgot password?</a>
-                </div>
-            </div>
-
             <!-- Submit button -->
             <div class="text-center" style="margin: 5%">
                 <a class="btn btn-lg btn-primary rounded-pill custom-button" href="home-page.php" onclick="validateForm(event)">Login</a>
-            </div>
-
-            <!-- Register buttons -->
-            <div class="text-center">
-                <p style="color: #522e38 !important;">Bukan Author Terdaftar? <a href="register-author.php" style="color: #ffb3c6 !important;" class="hover-effect">Daftar</a></p>
             </div>
         </form>
     </div>

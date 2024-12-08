@@ -117,9 +117,9 @@
                 <!-- Survey Section -->
                 <div class="col-lg-3 col-md-6 text-start">
                     <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4 custom-border" style="color: #ffb3c6 !important;">Survey</h4>
-                    <p class="mb-4">Klik tombol di bawah ini untuk melakukan survey. Kepuasan pengguna sangat berarti untuk kami</p>
+                    <p class="mb-4">Klik tombol di bawah ini untuk melakukan survey penggunaan website. Kepuasan pengguna sangat berarti untuk kami</p>
                     <div class="d-flex">
-                        <a class="btn btn-lg btn-primary rounded-circle me-2 custom-button" href=""><i class="fa-solid fa-square-poll-vertical"></i></a>
+                        <a class="btn btn-lg btn-primary rounded-circle me-2 custom-button" href="https://forms.gle/yFin2ciwsyCsEPKE7"><i class="fa-solid fa-square-poll-vertical"></i></a>
                     </div>
                 </div>
 
@@ -128,7 +128,7 @@
                     <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4 custom-border" style="color: #ffb3c6 !important;">Lapor Bug</h4>
                     <p class="mb-4">Klik tombol di bawah ini untuk melaporkan bug dalam website</p>
                     <div class="d-flex">
-                        <a class="btn btn-lg btn-primary rounded-circle me-2 custom-button" href=""><i class="fa-solid fa-bug"></i></a>
+                        <a class="btn btn-lg btn-primary rounded-circle me-2 custom-button" href="https://forms.gle/YgTufCGB3ULa9GT78"><i class="fa-solid fa-bug"></i></a>
                     </div>
                 </div>
             </div>

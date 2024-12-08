@@ -14,6 +14,12 @@
     background-size: cover;
 }
 
+@media (max-width: 992px){
+    .text-lg-start{
+        margin-top: 30%;
+    }
+}
+
 /********** psycho education article stylings **********/
 
 #article-video {

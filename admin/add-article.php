@@ -32,7 +32,7 @@
                 <a href="home-page.php" class="navbar-brand d-flex align-items-center">
                     <!-- Logo Images -->
                     <img src="../assets/images/website_photo/logo-plp.jpeg" alt="Logo Part 1" style="height: 50px;" class="me-2">
-                    <img src="../assets/images/website_photo/logo-wm.jpeg" alt="Logo Part 2" style="height: 50px;">
+                    <img src="../assets/images/website_photo/logo-wm-4.png" alt="Logo Part 2" style="height: 40px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
@@ -134,10 +134,26 @@
     <div class="container-fluid bg-dark text-light mt-5 py-5" style="background-color: #522e38 !important;">
         <div class="container py-5">
             <div class="row g-5">
-            <!-- Get In Touch Section -->
+            <!-- Note -->
             <div class="col-lg-3 col-md-6">
                 <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4 custom-border" style="color: #ffb3c6 !important;">Catatan</h4>
                 <p class="mb-4">Semua kolom tidak perlu diisi semua. Setiap submit akan langsung tercatat dalam database</p>
+            </div>
+            <!-- Survey Section -->
+            <div class="col-lg-3 col-md-6 text-start">
+                <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4 custom-border" style="color: #ffb3c6 !important;">Survey</h4>
+                <p class="mb-4">Klik tombol di bawah ini untuk melakukan survey penggunaan website. Kepuasan pengguna sangat berarti untuk kami</p>
+                <div class="d-flex">
+                    <a class="btn btn-lg btn-primary rounded-circle me-2 custom-button" href="https://forms.gle/Boj72yZu5sYsFgQC9"><i class="fa-solid fa-square-poll-vertical"></i></a>
+                </div>
+            </div>
+            <!-- Bug Report Section -->
+            <div class="col-lg-3 col-md-6 text-start">
+                <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4 custom-border" style="color: #ffb3c6 !important;">Lapor Bug</h4>
+                <p class="mb-4">Klik tombol di bawah ini untuk melaporkan bug dalam website</p>
+                <div class="d-flex">
+                    <a class="btn btn-lg btn-primary rounded-circle me-2 custom-button" href="https://forms.gle/YgTufCGB3ULa9GT78"><i class="fa-solid fa-bug"></i></a>
+                </div>
             </div>
         </div>
     </div>
