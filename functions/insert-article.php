@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $title = $_POST['title'];
         $content = $_POST['content'];
         $video_link = $_POST['video_link'];
-        $id_author = $_POST['id_author'];
+        $id_author = $_POST['id_author'];   
         
         // Handle file upload
         $photo_path = null; // Default value if no file uploaded

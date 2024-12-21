@@ -276,7 +276,7 @@
     <script>
         function handleSave() {
         document.getElementById("registrationForm").submit();
-    }
+        }
     </script>
 </body>
 </html>
