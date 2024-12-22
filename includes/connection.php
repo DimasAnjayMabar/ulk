@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";  // Hostname (biasanya localhost)
 $username = "u513866339_adminulk";         // MySQL username
-$password = "@adminulk123";             // MySQL password (default kosong untuk XAMPP/LAMP/MAMP)
+$password = "@aAdminulk123";             // MySQL password (default kosong untuk XAMPP/LAMP/MAMP)
 $database = "u513866339_psikoedukasi";  // Nama database Anda
 
 try {
