@@ -11,13 +11,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $video_link = $_POST['video_link'];
 
     // Handle image upload
-    if ($_FILES['image']['error'] == 0) {
+    if (isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
         $imageName = $_FILES['image']['name'];
         $imageTmp = $_FILES['image']['tmp_name'];
-        $imagePath = '../assets/images/article_photo/' . $imageName;  // Adjust the path where you want to store the image
-        move_uploaded_file($imageTmp, $imagePath);  // Move the uploaded image to the desired location
+        $imagePath = '../assets/images/article_photo/' . $imageName;
+        move_uploaded_file($imageTmp, $imagePath);  // Simpan gambar baru
     } else {
-        $imagePath = $article['photo_path'];  // Keep the old image if no new image is uploaded
+        // Gunakan gambar lama jika tidak ada gambar baru diunggah
+        $imagePath = $_POST['current_photo_path'];
     }
 
     try {

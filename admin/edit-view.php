@@ -1,4 +1,6 @@
 <?php
+    session_start();
+    require("../functions/authentication.php");
     // Include the PHP logic file that handles fetching the article data
     require('../functions/load-article.php');
 ?>
@@ -10,7 +12,6 @@
         require("../includes/head.php");
         require("../functions/separate-paragraph.php")
     ?>
-    <title>Unit Layanan Psikologi</title>
     <style>
         form {
             width: 100%;
@@ -101,6 +102,8 @@
             <div class="mb-3">
                 <label for="image" class="form-label" style="color: #522e38 !important;">Upload New Image (Optional)</label>
                 <input type="file" class="form-control" id="image" name="image">
+                <!-- Input untuk menyimpan path gambar lama -->
+                <input type="hidden" name="current_photo_path" value="<?php echo htmlspecialchars($article['photo_path']); ?>">
             </div>
 
             <!-- Submit Button -->
@@ -117,7 +120,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="confirmationModalLabel" style="color: #522e38 !important;">Konfirmasi Tambah Artikel</h5>
+            <h5 class="modal-title" id="confirmationModalLabel" style="color: #522e38 !important;">Konfirmasi Perubahan Artikel</h5>
         </div>
         <div class="modal-body">
             Apakah Anda yakin ingin menyimpan perubahan artikel?
@@ -221,14 +224,22 @@
 
         function populateAuthorsDropdown(authors) {
             const dropdown = document.getElementById("authorDropdown");
+            const selectedAuthorId = "<?php echo $article['id_author']; ?>"; // Ambil ID author dari PHP
+
             // Clear existing options except the placeholder
-            dropdown.innerHTML = '<option value="" disabled selected>Pilih Penulis</option>';
+            dropdown.innerHTML = '<option value="" disabled>Pilih Penulis</option>';
 
             // Populate dropdown with author options
             authors.forEach(author => {
                 const option = document.createElement("option");
-                option.value = author.id_author; // Use `id_author` as the option value
-                option.textContent = author.nama_author; // Display `nama_author` in the dropdown
+                option.value = author.id_author; // Gunakan `id_author` sebagai nilai
+                option.textContent = author.nama_author; // Tampilkan `nama_author`
+
+                // Tandai author yang sesuai dengan data artikel
+                if (author.id_author === selectedAuthorId) {
+                    option.selected = true;
+                }
+
                 dropdown.appendChild(option);
             });
         }

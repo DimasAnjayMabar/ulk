@@ -1,5 +1,4 @@
 <?php
-    // Include the PHP logic file that handles fetching the article data
     require('../functions/load-article.php');
 ?>
 
@@ -7,11 +6,12 @@
 <html lang="en">
 <head>
     <?php 
+        session_start();
+        require("../functions/authentication.php");
         require("../includes/head.php");
         include('logout-modal.php');
         require("../functions/separate-paragraph.php")
     ?>
-    <title>Unit Layanan Psikologi</title>
 </head>
 <body>
     <!-- Navbar Start -->
@@ -75,7 +75,7 @@
             <p style="color: #522e38 !important; margin-top: 2%;">Memiliki masalah dengan video?. Klik <a href="<?php echo $article['video_link']; ?>">di sini</a></p>
         <?php else: ?>
             <!-- If no video link, display image -->
-            <img src="<?php echo $article['photo_path']; ?>" class="rounded" alt="Article Image" id="article-image">
+            <img src="<?php echo $article['photo_path']; ?>" class="rounded" id="article-image">
         <?php endif; ?>
         <div class="article-content">
             <?php 

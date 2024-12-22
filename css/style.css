@@ -347,6 +347,24 @@
     right: 0;
 }
 
+/********** article form **********/
+form {
+    width: 100%;
+    max-width: 400px;     /* Optional: limit the form width */
+}
+
+.form-control:focus {
+    border-color: #ffb3c6 !important; /* Change the border color on focus */
+    box-shadow: 0 0 0 0.2rem rgba(255, 179, 198, 0.25) !important; /* Optional: add a soft glow */
+}
+
+/********** error message **********/
+/* Error message */
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
 
 
 

@@ -4,7 +4,6 @@
     <?php 
         require("../includes/head.php");
     ?>
-    <title>Unit Layanan Psikologi</title>
 </head>
 <body>
     <!-- Navbar Start -->

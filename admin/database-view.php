@@ -1,4 +1,6 @@
 <?php
+    session_start();
+    require("../functions/authentication.php");
     require("../includes/connection.php");
     require("../functions/limit-words.php");
     require("../functions/fetch-card-identity.php");  // This file fetches the articles
@@ -11,7 +13,6 @@
     <?php 
         require("../includes/head.php");
     ?>
-    <title>Unit Layanan Psikologi</title>
     <style>
     </style>
 </head>
