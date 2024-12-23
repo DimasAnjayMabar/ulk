@@ -5,6 +5,14 @@
     <?php 
         require("../includes/head.php");
     ?>
+    <style>
+        #login-form{
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center;   /* Center vertically */
+            min-height: 100vh;     /* Full height of viewport */
+        }
+    </style>
 </head>
 
 <body>
