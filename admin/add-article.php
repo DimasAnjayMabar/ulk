@@ -34,7 +34,7 @@
 
     <!-- Add Article Start -->
     <div class="text-center mx-auto mb-5" style="max-width: 500px;">
-        <h1 class="display-4 border-bottom border-5 custom-border2" style="color: #522e38 !important;">HALO <?php echo isset($_SESSION['nama_author']) ? htmlspecialchars($_SESSION['nama_author']) : 'Guest'; ?></h1>
+        <h1 class="display-4 border-bottom border-5 custom-border2 text-uppercase" style="color: #522e38 !important;">HALO <?php echo isset($_SESSION['nama_author']) ? htmlspecialchars($_SESSION['nama_author']) : 'Guest'; ?></h1>
     </div id="registrationForm" method="POST" action="../functions/insert-article.php">
     <div class="card mb-3 mx-auto p-3 bg-light d-flex justify-content-center align-items-center" style="max-width: 800px; min-height: 400px; border: 3px solid #d3d3d3; border-radius: 10px; overflow: hidden;">
         <div class="card-body text-center">
@@ -75,7 +75,7 @@
     </div>
     <!-- Add Article End -->
 
-    <!-- Modal Start -->
+    <!-- Modal Tambah Start -->
     <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -92,9 +92,9 @@
         </div>
     </div>
     </div>
-    <!-- Modal End -->
+    <!-- Modal Tambah End -->
 
-    <!-- Modal Start -->
+    <!-- Modal Logout Start -->
     <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -111,7 +111,7 @@
             </div>
         </div>
     </div>
-    <!-- Modal End -->
+    <!-- Modal Logout End -->
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light mt-5 py-5" style="background-color: #522e38 !important;">

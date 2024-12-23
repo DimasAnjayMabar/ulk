@@ -10,7 +10,6 @@
     require("../includes/head.php"); 
     require("../functions/separate-paragraph.php");
     ?>
-    <title>Unit Layanan Psikologi</title>
 </head>
 <body>
     <!-- Navbar Start -->
@@ -175,7 +174,8 @@
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top custom-button" id="backOnTop"><i class="bi bi-arrow-up"></i></a>
 
     <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <?php
+        require('../includes/foot.php');
+    ?>
 </body>
 </html>

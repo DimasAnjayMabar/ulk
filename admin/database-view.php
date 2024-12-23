@@ -13,8 +13,6 @@
     <?php 
         require("../includes/head.php");
     ?>
-    <style>
-    </style>
 </head>
 
 <body>
@@ -110,29 +108,32 @@
     </div>
     <!-- Article Menu End -->
 
-    <!-- Modal Start -->
+    <!-- Modal Delete Start -->
     <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="confirmationModalLabel" style="color: #522e38 !important;">Konfirmasi Penghapusan Artikel</h5>
-                </div>
-                <div class="modal-body">
-                    Apakah Anda yakin ingin menghapus artikel?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-lg btn-primary rounded-pill custom-button" data-bs-dismiss="modal">Batal</button>
-                    <form id="delete-article-modal-form" action="../functions/delete-article.php" method="POST">
-                        <input type="hidden" name="id" id="modal-article-id">
-                        <button type="submit" class="btn btn-lg btn-danger rounded-pill custom-button">Hapus</button>
-                    </form>
-                </div>
-            </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="confirmationModalLabel" style="color: #522e38 !important;">Konfirmasi Penghapusan Artikel</h5>
+        </div>
+        <div class="modal-body">
+            Apakah Anda yakin ingin menghapus artikel?
+        </div>
+        <div class="modal-footer">
+        <div>
+            <button type="button" class="btn btn-lg btn-primary rounded-pill custom-button" data-bs-dismiss="modal">Batal</button>
+            <form id="delete-article-modal-form" action="../functions/delete-article.php" method="POST" style="display: inline;">
+                <input type="hidden" name="id" id="modal-article-id">
+                <button type="submit" class="btn btn-lg btn-danger rounded-pill custom-button">Hapus</button>
+            </form>
+        </div>
+        </div>
         </div>
     </div>
-    <!-- Modal End -->
+    </div>
+    <!-- Modal Delete End -->
 
-    <!-- Modal Start -->
+
+    <!-- Modal Logout Start -->
     <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -149,7 +150,7 @@
             </div>
         </div>
     </div>
-    <!-- Modal End -->
+    <!-- Modal Logout End -->
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light mt-5 py-5" style="background-color: #522e38 !important;">
@@ -185,60 +186,12 @@
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top custom-button" id="backOnTop"><i class="bi bi-arrow-up"></i></a>
 
     <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Script for Deleting Article -->
-    <script>
-        // Handle keydown event on the entire document
-        document.addEventListener("keydown", function (event) {
-            if (event.key === "Enter") {
-                event.preventDefault(); // Prevent default Enter key action
-                
-                // Check if the modal is currently shown
-                const modalElement = document.getElementById("confirmationModal");
-                const isModalOpen = modalElement.classList.contains("show");
-
-                if (!isModalOpen) {
-                    // Validate the form and show the modal if valid
-                    if (validateForm()) {
-                        const modal = new bootstrap.Modal(modalElement);
-                        modal.show();
-                    }
-                } else {
-                    // If modal is open and Enter is pressed, submit the form
-                    document.getElementById("delete-article-modal-form").submit();
-                }
-            } else if (event.key === "Escape") {
-                // Close the modal when Esc key is pressed
-                const modalElement = document.getElementById("confirmationModal");
-                const modal = bootstrap.Modal.getInstance(modalElement);
-                if (modal) {
-                    modal.hide();
-                }
-            }
-        });
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const deleteButtons = document.querySelectorAll('.delete-button');
-            
-            deleteButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    const articleId = this.getAttribute('data-id'); // Get article ID
-                    const modalInput = document.getElementById('modal-article-id'); // Find hidden input
-                    modalInput.value = articleId; // Set the value of the hidden input
-                });
-            });
-        });
-    </script>
-
-    <script>
-        function handleLogout() {
-        // Redirect to logout logic or clear session storage
-        window.location.href = '../functions/logout.php'; // Adjust the path as necessary
-    }
-    </script>
+    <?php
+        require('../includes/foot.php');
+        // Delete article
+        require('../js/delete-article.php');
+        // Logout
+        require('../js/logout.php');
+    ?>
 </body>
 </html>
