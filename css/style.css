@@ -367,13 +367,6 @@ form {
 }
 
 /********** login page **********/
-#login-form{
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center;   /* Center vertically */
-    min-height: 100vh;     /* Full height of viewport */
-}
-
 .hover-effect {
     color: #ffb3c6; /* Default color */
     text-decoration: none; /* Remove underline */
