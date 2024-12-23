@@ -6,7 +6,6 @@
 <html lang="en">
 <head>
     <?php 
-        session_start();
         require("../functions/authentication.php");
         require("../includes/head.php");
         require("../functions/separate-paragraph.php")

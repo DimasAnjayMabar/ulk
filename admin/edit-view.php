@@ -1,5 +1,4 @@
 <?php
-    session_start();
     require("../functions/authentication.php");
     // Include the PHP logic file that handles fetching the article data
     require('../functions/load-article.php');

@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <?php
-        session_start();
         require('../functions/authentication.php');
         require("../includes/head.php");
     ?>
@@ -12,7 +11,7 @@
     <div class="container-fluid sticky-top bg-white shadow-sm">
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
-                <a href="home-page.php" class="navbar-brand d-flex align-items-center">
+                <a href="add-article.php" class="navbar-brand d-flex align-items-center">
                     <!-- Logo Images -->
                     <img src="../assets/images/website_photo/logo-plp.jpeg" alt="Logo Part 1" style="height: 50px;" class="me-2">
                     <img src="../assets/images/website_photo/logo-wm-4.png" alt="Logo Part 2" style="height: 40px;">
