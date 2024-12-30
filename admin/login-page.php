@@ -48,5 +48,8 @@
         //Login 
         require('../js/login.php');
     ?>
+    <script>
+        window.history.forward();
+    </script>
 </body>
 </html>
