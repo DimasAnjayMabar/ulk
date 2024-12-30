@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $_SESSION['user_id'] = $user['id_author'];
                     $_SESSION['username'] = $user['username'];
                     $_SESSION['nama_author'] = $user['nama_author'];
+                    $_SESSION['isloggedin'] = true;
 
                     echo "success"; // Kirim respons sukses
                 } else {

@@ -37,7 +37,7 @@
 
             <!-- Submit button -->
             <div class="text-center" style="margin: 5%">
-                <a class="btn btn-lg btn-primary rounded-pill custom-button" href="home-page.php" onclick="validateForm(event)">Login</a>
+                <a class="btn btn-lg btn-primary rounded-pill custom-button" onclick="validateForm(event)">Login</a>
             </div>
         </form>
     </div>
@@ -48,8 +48,5 @@
         //Login 
         require('../js/login.php');
     ?>
-    <script>
-        window.history.forward();
-    </script>
 </body>
 </html>

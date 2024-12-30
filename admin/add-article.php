@@ -5,6 +5,7 @@
         require('../functions/authentication.php');
         require("../includes/head.php");
     ?>
+    
 </head>
 <body>
     <!-- Navbar Start -->
@@ -157,6 +158,8 @@
         require('../js/logout.php');
         //Script for handle save
         require('../js/save-article.php');
+        //Script for inactivity logout
+        require('../js/inactivity-logout.php');
     ?>
 </body>
 </html>
