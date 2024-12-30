@@ -1,7 +1,7 @@
 <script>
     // Set idle time to 15 minutes (900 seconds)
     let idleTime = 0;
-    const idleLimit = 5; // 15 minutes
+    const idleLimit = 900; // 15 minutes
 
     // Function to destroy session and redirect to login page
     function destroySessionAndRedirect() {
