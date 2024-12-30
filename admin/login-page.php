@@ -49,7 +49,12 @@
         require('../js/login.php');
     ?>
     <script>
-        window.history.forward();
+        if (window.history && window.history.pushState) {
+            window.history.pushState(null, null, window.location.href);
+            window.onpopstate = function () {
+                window.history.pushState(null, null, window.location.href);
+            };
+        }
     </script>
 </body>
 </html>
