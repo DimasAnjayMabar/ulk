@@ -51,8 +51,7 @@
                     success: function (response) {
                         if (response === "success") {
                             // Redirect to the Add Article page on successful login
-                            window.history.replaceState(null, null, '../admin/add-article.php'); // Gantilah dengan URL halaman Anda
-                            window.location.href = "../admin/add-article.php"; // Arahkan ke homepage
+                            window.location.href = "add-article.php";
                         } else {
                             // Display the backend error message directly in the form
                             if (response === "User tidak ditemukan") {

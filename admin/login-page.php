@@ -13,6 +13,9 @@
             min-height: 100vh;     /* Full height of viewport */
         }
     </style>
+    <meta http-equiv="no-cache" content="no-store, must-revalidate, post-check=0, pre-check=0">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="0">
 </head>
 
 <body>
