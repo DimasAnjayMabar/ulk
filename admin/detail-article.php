@@ -147,6 +147,8 @@
     <!-- JavaScript Libraries -->
     <?php
         require('../includes/foot.js');
+        //Script for inactivity logout
+        require('../js/inactivity-logout.php');
     ?>
 </body>
 </html>

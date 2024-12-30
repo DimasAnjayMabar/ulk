@@ -166,6 +166,8 @@
         require('../js/update-article.php');
         // Save article
         require('../js/save-article(edit).php');
+        //Script for inactivity logout
+        require('../js/inactivity-logout.php');
     ?>
 </body>
 </html>

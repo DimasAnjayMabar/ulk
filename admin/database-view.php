@@ -191,6 +191,8 @@
         require('../js/delete-article.php');
         // Logout
         require('../js/logout.php');
+        //Script for inactivity logout
+        require('../js/inactivity-logout.php');
     ?>
 </body>
 </html>
