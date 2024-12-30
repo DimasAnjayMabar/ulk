@@ -3,6 +3,16 @@
 
 <head>
     <?php 
+        // Mulai sesi
+        session_start();
+
+        // Cek jika pengguna sudah login
+        if (isset($_SESSION['isloggedin']) && $_SESSION['isloggedin'] === true) {
+            // Arahkan ke homepage jika sudah login
+            header('Location: add-article.php');
+            exit();
+        }
+
         require("../includes/head.php");
     ?>
     <style>
@@ -51,6 +61,5 @@
         //Login 
         require('../js/login.php');
     ?>
-    
 </body>
 </html>
