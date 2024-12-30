@@ -48,13 +48,6 @@
         //Login 
         require('../js/login.php');
     ?>
-    <script>
-        if (window.history && window.history.pushState) {
-            window.history.pushState(null, null, window.location.href);
-            window.onpopstate = function () {
-                window.history.pushState(null, null, window.location.href);
-            };
-        }
-    </script>
+    
 </body>
 </html>
